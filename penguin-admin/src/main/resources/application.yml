@@ -1,8 +1,14 @@
-# Tomcat
 server:
-    tomcat:
-        uri-encoding: UTF-8
-        max-threads: 1000
-        min-spare-threads: 30
-    port: 8088
-    context-path: /penguin-admin
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8088
+    #context-path: /penguin-admin
+# MySql
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/penguin?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    username: root
+    password: 123456
