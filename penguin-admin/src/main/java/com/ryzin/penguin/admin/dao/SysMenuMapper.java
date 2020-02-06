@@ -27,4 +27,10 @@ public interface SysMenuMapper {
     int updateByPrimaryKeySelective(SysMenu record);
 
     int updateByPrimaryKey(SysMenu record);
+    
+    /**
+     * 分页查询
+     * @return
+     */
+	List<SysMenu> selectPage();
 }

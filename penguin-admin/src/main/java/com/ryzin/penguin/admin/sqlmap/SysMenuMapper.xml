@@ -93,6 +93,11 @@
     from sys_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </select>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
