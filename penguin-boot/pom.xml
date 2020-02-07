@@ -4,19 +4,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.ryzin</groupId>
+		<artifactId>penguin-pom</artifactId>
+		<version>${project.version}</version>
+		<relativePath>../penguin-pom</relativePath>
 	</parent>
 	
-	<groupId>com.ryzin</groupId>
 	<artifactId>penguin-boot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>penguin-boot</name>
-	<description>Psycho exprienment platform project for Spring Boot</description>
+	<description>penguin-boot</description>
+	<packaging>jar</packaging>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 	</properties>
 
@@ -39,73 +40,53 @@
 			</exclusions>
 		</dependency>
 		
-		<!-- mybatis -->
-		<dependency>
-		    <groupId>org.mybatis.spring.boot</groupId>
-		    <artifactId>mybatis-spring-boot-starter</artifactId>
-		    <version>1.3.2</version>
-		</dependency>
-		
-		<!-- mysql -->
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.2</version>
-        </dependency>
- 
-	    <dependency>
-	        <groupId>mysql</groupId>
-	        <artifactId>mysql-connector-java</artifactId>
-	        <version>5.1.38</version>
-	    </dependency>
-
-		<!-- penguin-admin -->
-	    <dependency>
-	    	<groupId>com.ryzin</groupId>
-	    	<artifactId>penguin-admin</artifactId>
-	    	<version>0.0.1-SNAPSHOT</version>
-	    </dependency>
-	    
-	    <!-- penguin-common -->
-	    <dependency>
-	    	<groupId>com.ryzin</groupId>
-	    	<artifactId>penguin-common</artifactId>
-	    	<version>0.0.1-SNAPSHOT</version>
-	    </dependency>
-	    
-	    <!-- swagger -->
+		<!-- swagger -->
 		<dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger2</artifactId>
-		    <version>2.8.0</version>
 		</dependency>
 		
 		<dependency>
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-swagger-ui</artifactId>
-		    <version>2.8.0</version>
 		</dependency>		
 		
 		<!-- swagger require dependence -->
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
-		    <version>2.3.0</version>
 		</dependency>
 		
 		<!-- druid -->
 		<dependency>
 		    <groupId>com.alibaba</groupId>
 		    <artifactId>druid-spring-boot-starter</artifactId>
-		    <version>1.1.10</version>
 		</dependency>
 		
 		<!-- log4j -->
 		<dependency>
 		    <groupId>log4j</groupId>
 		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
 		</dependency>
+
+		<!-- penguin-admin -->
+	    <dependency>
+			<groupId>com.ryzin</groupId>
+			<artifactId>penguin-admin</artifactId>
+		</dependency>
+		
+	    <!-- penguin-common -->
+	    <dependency>
+	    	<groupId>com.ryzin</groupId>
+	    	<artifactId>penguin-common</artifactId>
+	    </dependency>
+		
+		<!-- penguin-core -->
+		<dependency>
+			<groupId>com.ryzin</groupId>
+			<artifactId>penguin-core</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -116,23 +97,6 @@
 			</plugin>
 		</plugins>
 		
-		<!-- 打包时拷贝MyBatis的映射文件 -->
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/sqlmap/*.xml</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
-			<resource>  
-                <directory>src/main/resources</directory>  
-                    <includes> 
-                    	<include>**/*.*</include>  
-                    </includes> 
-                    <filtering>true</filtering>  
-            </resource> 
-		</resources>
 	</build>
 
 </project>

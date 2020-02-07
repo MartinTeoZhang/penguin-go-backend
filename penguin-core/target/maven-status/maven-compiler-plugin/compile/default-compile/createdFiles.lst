@@ -1,0 +1,6 @@
+com\ryzin\penguin\core\http\HttpResult.class
+com\ryzin\penguin\core\http\HttpStatus.class
+com\ryzin\penguin\core\page\PageUtils.class
+com\ryzin\penguin\core\page\PageResult.class
+com\ryzin\penguin\core\service\CurdService.class
+com\ryzin\penguin\core\page\PageRequest.class

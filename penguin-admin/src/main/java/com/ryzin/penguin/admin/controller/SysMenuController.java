@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ryzin.penguin.admin.page.PageRequest;
 import com.ryzin.penguin.admin.service.SysMenuService;
+import com.ryzin.penguin.core.http.HttpResult;
+import com.ryzin.penguin.core.page.PageRequest;
 
 @RestController
 @RequestMapping("menu")
@@ -18,7 +19,7 @@ public class SysMenuController {
 	
 	
 	@PostMapping(value="/findPage")
-	public Object findPage(@RequestBody PageRequest pageQuery) {
-		return sysMenuService.findPage(pageQuery);
+	public HttpResult findPage(@RequestBody PageRequest pageQuery) {
+		return HttpResult.ok(sysMenuService.findPage(pageQuery));
 	}
 }

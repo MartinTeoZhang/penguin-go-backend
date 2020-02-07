@@ -93,7 +93,7 @@
     from sys_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </select>
-  <select id="selectPage" resultMap="BaseResultMap">
+  <select id="findPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_menu
