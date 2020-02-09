@@ -1,5 +1,8 @@
 package com.ryzin.penguin.core.page;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 分页请求
  */
@@ -12,6 +15,10 @@ public class PageRequest {
 	 * 每页数量
 	 */
 	private int pageSize = 10;
+	/**
+	 * 每页数量
+	 */
+	private Map<String, ColumnFilter> columnFilters = new HashMap<String, ColumnFilter>();
 	
 	public int getPageNum() {
 		return pageNum;
@@ -24,5 +31,14 @@ public class PageRequest {
 	}
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+	public Map<String, ColumnFilter> getColumnFilters() {
+		return columnFilters;
+	}
+	public void setColumnFilters(Map<String, ColumnFilter> columnFilters) {
+		this.columnFilters = columnFilters;
+	}
+	public ColumnFilter getColumnFilter(String name) {
+		return columnFilters.get(name);
 	}
 }

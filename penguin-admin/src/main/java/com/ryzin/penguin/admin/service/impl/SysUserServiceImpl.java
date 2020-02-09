@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.ryzin.penguin.admin.dao.SysUserMapper;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysUserService;
+import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
-import com.ryzin.penguin.core.page.PageUtils;
+
 
 // SysUserServiceImpl 实现类，调用 SysUserMapper 方法完成查询操作
 @Service
@@ -52,20 +51,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
-		return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
-	}
-	
-	/**
-	 * 调用分页插件完成分页
-	 * @param pageQuery
-	 * @return
-	 */
-	private PageInfo<SysUser> getPageInfo(PageRequest pageRequest) {
-		int pageNum = pageRequest.getPageNum();
-		int pageSize = pageRequest.getPageSize();
-		PageHelper.startPage(pageNum, pageSize);
-		List<SysUser> sysMenus = sysUserMapper.findPage();
-		return new PageInfo<SysUser>(sysMenus);
+		return MybatisPageHelper.findPage(pageRequest, sysUserMapper);
 	}
 
 	@Override

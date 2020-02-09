@@ -33,4 +33,6 @@ public interface SysMenuMapper {
      * @return
      */
 	List<SysMenu> findPage();
+	
+	List<SysMenu> findPageByName(@Param(value = "name") String name);
 }
