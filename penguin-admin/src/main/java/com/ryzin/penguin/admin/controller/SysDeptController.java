@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ryzin.penguin.admin.model.SysDept;
 import com.ryzin.penguin.admin.service.SysDeptService;
-import com.ryzin.penguin.core.page.PageRequest;
-import com.ryzin.penguin.core.page.PageResult;
+import com.ryzin.penguin.core.http.HttpResult;
 
 @RestController
 @RequestMapping("dept")
@@ -21,32 +21,28 @@ public class SysDeptController {
 	private SysDeptService sysDeptService;
 	
 	@PostMapping(value="/save")
-	public int save(SysDept record) {
-		return sysDeptService.save(record);
+	public HttpResult save(@RequestBody SysDept record) {
+		return HttpResult.ok(sysDeptService.save(record));
 	}
 
 	@PostMapping(value="/update")
-	public int update(SysDept record) {
-		return sysDeptService.update(record);
+	public HttpResult update(@RequestBody SysDept record) {
+		return HttpResult.ok(sysDeptService.update(record));
 	}
 
 	@PostMapping(value="/delete")
-	public int delete(SysDept record) {
-		return sysDeptService.delete(record);
+	public HttpResult delete(@RequestBody SysDept record) {
+		return HttpResult.ok(sysDeptService.delete(record));
 	}
 
-	@PostMapping(value="/delete")
-	public int delete(List<SysDept> records) {
-		return sysDeptService.delete(records);
+	@PostMapping(value="/deleteBatch")
+	public HttpResult delete(@RequestBody List<SysDept> records) {
+		return HttpResult.ok(sysDeptService.delete(records));
 	}
 
-	@GetMapping(value="/findById")
-	public SysDept findById(Long id) {
-		return sysDeptService.findById(id);
+	@GetMapping(value="/findTree")
+	public HttpResult findTree() {
+		return HttpResult.ok(sysDeptService.findTree());
 	}
-
-	@PostMapping(value="/update")
-	public PageResult findPage(PageRequest pageRequest) {
-		return sysDeptService.findPage(pageRequest);
-	}
+	
 }

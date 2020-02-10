@@ -1,9 +1,12 @@
 package com.ryzin.penguin.admin.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.model.SysUserExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+
 
 public interface SysUserMapper {
     long countByExample(SysUserExample example);
@@ -28,5 +31,9 @@ public interface SysUserMapper {
 
     int updateByPrimaryKey(SysUser record);
     
-	List<SysUser> findPage();
+    List<SysUser> findPage();
+    
+    SysUser findByUserName(@Param(value="username") String username);
+    
+	List<SysUser> findPageByUserName(@Param(value="username") String username);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ryzin.penguin.admin.dao.SysUserMapper;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysUserService;
+import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -48,9 +49,17 @@ public class SysUserServiceImpl implements SysUserService {
 		return sysUserMapper.selectByPrimaryKey(id);
 	}
 
-
+	@Override
+	public SysUser findByUserName(String username) {
+		return sysUserMapper.findByUserName(username);
+	}
+	
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
+		ColumnFilter columnFilter = pageRequest.getColumnFilter(NAME);
+		if(columnFilter != null) {
+			return MybatisPageHelper.findPage(pageRequest, sysUserMapper, "findPageByName", columnFilter.getValue());
+		}
 		return MybatisPageHelper.findPage(pageRequest, sysUserMapper);
 	}
 

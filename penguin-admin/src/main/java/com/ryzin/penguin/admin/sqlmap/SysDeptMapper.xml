@@ -6,6 +6,10 @@
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
     <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    dept_id, parent_id, name, order_num, del_flag
+    dept_id, parent_id, name, order_num, create_by, create_time, last_update_by, last_update_time, 
+    del_flag
   </sql>
   <select id="selectByExample" parameterType="com.ryzin.penguin.admin.model.SysDeptExample" resultMap="BaseResultMap">
     select
@@ -92,7 +97,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_dept
-    where dept_id = #{deptId,jdbcType=BIGINT}
+    where dept_id = #{deptId,jdbcType=BIGINT} or parent_id = #{deptId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.ryzin.penguin.admin.model.SysDeptExample">
     delete from sys_dept
@@ -102,9 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.ryzin.penguin.admin.model.SysDept">
     insert into sys_dept (dept_id, parent_id, name, 
-      order_num, del_flag)
+      order_num, create_by, create_time, 
+      last_update_by, last_update_time, del_flag
+      )
     values (#{deptId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{orderNum,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT})
+      #{orderNum,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ryzin.penguin.admin.model.SysDept">
     insert into sys_dept
@@ -120,6 +129,18 @@
       </if>
       <if test="orderNum != null">
         order_num,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
       </if>
       <if test="delFlag != null">
         del_flag,
@@ -138,6 +159,18 @@
       <if test="orderNum != null">
         #{orderNum,jdbcType=INTEGER},
       </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="delFlag != null">
         #{delFlag,jdbcType=TINYINT},
       </if>
@@ -148,6 +181,11 @@
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
+  </select>
+  <select id="findAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dept
   </select>
   <select id="findPage" resultMap="BaseResultMap">
     select 
@@ -200,6 +238,18 @@
       <if test="orderNum != null">
         order_num = #{orderNum,jdbcType=INTEGER},
       </if>
+       <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="delFlag != null">
         del_flag = #{delFlag,jdbcType=TINYINT},
       </if>
@@ -211,6 +261,10 @@
     set parent_id = #{parentId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       order_num = #{orderNum,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       del_flag = #{delFlag,jdbcType=TINYINT}
     where dept_id = #{deptId,jdbcType=BIGINT}
   </update>

@@ -2,7 +2,7 @@ package com.ryzin.penguin.core.http;
 
 public class HttpResult {
 
-    private int code;
+    private int code = 200;
     private String msg;
     private Object data;
     

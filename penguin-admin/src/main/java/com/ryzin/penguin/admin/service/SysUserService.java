@@ -7,5 +7,5 @@ import com.ryzin.penguin.core.service.CurdService;
 
 public interface SysUserService extends CurdService<SysUser> {
 
-
+	SysUser findByUserName(String username);
 }

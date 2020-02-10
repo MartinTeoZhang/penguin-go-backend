@@ -31,4 +31,6 @@ public interface SysRoleMapper {
     int updateByPrimaryKey(SysRole record);
     
     List<SysRole> findPage();
+    
+    List<SysRole> findAll();
 }

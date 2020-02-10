@@ -5,6 +5,10 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, role_id, dept_id
+    id, role_id, dept_id, create_by, create_time, last_update_by, last_update_time
   </sql>
   <select id="selectByExample" parameterType="com.ryzin.penguin.admin.model.SysRoleDeptExample" resultMap="BaseResultMap">
     select
@@ -99,10 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ryzin.penguin.admin.model.SysRoleDept">
-    insert into sys_role_dept (id, role_id, dept_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{deptId,jdbcType=BIGINT}
-      )
+    insert into sys_role_dept (id, role_id, dept_id, 
+      create_by, create_time, last_update_by, 
+      last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{deptId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=BIGINT}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ryzin.penguin.admin.model.SysRoleDept">
     insert into sys_role_dept
@@ -116,6 +122,18 @@
       <if test="deptId != null">
         dept_id,
       </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -126,6 +144,18 @@
       </if>
       <if test="deptId != null">
         #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -170,13 +200,29 @@
       <if test="deptId != null">
         dept_id = #{deptId,jdbcType=BIGINT},
       </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ryzin.penguin.admin.model.SysRoleDept">
     update sys_role_dept
     set role_id = #{roleId,jdbcType=BIGINT},
-      dept_id = #{deptId,jdbcType=BIGINT}
+      dept_id = #{deptId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
