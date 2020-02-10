@@ -28,15 +28,5 @@ public interface SysUserMapper {
 
     int updateByPrimaryKey(SysUser record);
     
-    /**
-     * 查询全部
-     * @return
-     */
-    List<SysUser> findAll();
-	
-	/**
-	 * 分页查询
-	 * @return
-	 */
 	List<SysUser> findPage();
 }

@@ -1,8 +1,9 @@
 package com.ryzin.penguin.admin.dao;
 
+import java.util.List;
+
 import com.ryzin.penguin.admin.model.SysLog;
 import com.ryzin.penguin.admin.model.SysLogExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SysLogMapper {
@@ -27,4 +28,6 @@ public interface SysLogMapper {
     int updateByPrimaryKeySelective(SysLog record);
 
     int updateByPrimaryKey(SysLog record);
+    
+    List<SysLog> findPage();
 }

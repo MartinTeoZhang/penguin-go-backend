@@ -1,5 +1,7 @@
 package com.ryzin.penguin.admin.dao;
 
+import java.util.List;
+
 import com.ryzin.penguin.admin.model.SysDept;
 import com.ryzin.penguin.admin.model.SysDeptExample;
 import java.util.List;
@@ -27,4 +29,6 @@ public interface SysDeptMapper {
     int updateByPrimaryKeySelective(SysDept record);
 
     int updateByPrimaryKey(SysDept record);
+    
+    List<SysDept> findPage();
 }

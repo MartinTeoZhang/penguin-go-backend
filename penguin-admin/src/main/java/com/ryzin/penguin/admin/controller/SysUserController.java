@@ -1,16 +1,17 @@
 package com.ryzin.penguin.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysUserService;
-import com.ryzin.penguin.core.http.HttpResult;
-
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import com.ryzin.penguin.core.page.PageRequest;
+import com.ryzin.penguin.core.page.PageResult;
 
 // SysUserController restful 接口，返回JSON数据格式，提供外部调用
 
@@ -23,13 +24,33 @@ public class SysUserController {
 	private SysUserService sysUserService;
 	
 	
-	@GetMapping(value="/findByUserId")
-	public HttpResult findByUserId(@RequestParam Long userId) {
-		return HttpResult.ok(sysUserService.findById(userId));
+	@PostMapping(value="/save")
+	public int save(SysUser record) {
+		return sysUserService.save(record);
 	}
 	
-	@GetMapping(value="/findAll")
-	public HttpResult findAll() {
-		return HttpResult.ok(sysUserService.findAll());
+	@PostMapping(value="/update")
+	public int update(SysUser record) {
+		return sysUserService.update(record);
+	}
+
+	@PostMapping(value="/delete")
+	public int delete(SysUser record) {
+		return sysUserService.delete(record);
+	}
+
+	@PostMapping(value="/delete")
+	public int delete(List<SysUser> records) {
+		return sysUserService.delete(records);
+	}
+
+	@GetMapping(value="/findById")
+	public SysUser findById(Long id) {
+		return sysUserService.findById(id);
+	}
+
+	@PostMapping(value="/update")
+	public PageResult findPage(PageRequest pageRequest) {
+		return sysUserService.findPage(pageRequest);
 	}
 }

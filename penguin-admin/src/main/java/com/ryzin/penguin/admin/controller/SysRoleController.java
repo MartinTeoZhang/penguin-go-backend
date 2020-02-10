@@ -8,45 +8,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ryzin.penguin.admin.model.SysMenu;
-import com.ryzin.penguin.admin.service.SysMenuService;
+import com.ryzin.penguin.admin.model.SysRole;
+import com.ryzin.penguin.admin.service.SysRoleService;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
 
 @RestController
-@RequestMapping("menu")
-public class SysMenuController {
+@RequestMapping("role")
+public class SysRoleController {
 
 	@Autowired
-	private SysMenuService sysMenuService;
+	private SysRoleService sysRoleService;
 	
 	@PostMapping(value="/save")
-	public int save(SysMenu record) {
-		return sysMenuService.save(record);
+	public int save(SysRole record) {
+		return sysRoleService.save(record);
 	}
 
 	@PostMapping(value="/update")
-	public int update(SysMenu record) {
-		return sysMenuService.update(record);
+	public int update(SysRole record) {
+		return sysRoleService.update(record);
 	}
 
 	@PostMapping(value="/delete")
-	public int delete(SysMenu record) {
-		return sysMenuService.delete(record);
+	public int delete(SysRole record) {
+		return sysRoleService.delete(record);
 	}
 
 	@PostMapping(value="/delete")
-	public int delete(List<SysMenu> records) {
-		return sysMenuService.delete(records);
+	public int delete(List<SysRole> records) {
+		return sysRoleService.delete(records);
 	}
 
 	@GetMapping(value="/findById")
-	public SysMenu findById(Long id) {
-		return sysMenuService.findById(id);
+	public SysRole findById(Long id) {
+		return sysRoleService.findById(id);
 	}
 
 	@PostMapping(value="/update")
 	public PageResult findPage(PageRequest pageRequest) {
-		return sysMenuService.findPage(pageRequest);
+		return sysRoleService.findPage(pageRequest);
 	}
 }

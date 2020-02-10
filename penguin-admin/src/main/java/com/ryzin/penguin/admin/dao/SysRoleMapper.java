@@ -1,5 +1,7 @@
 package com.ryzin.penguin.admin.dao;
 
+import java.util.List;
+
 import com.ryzin.penguin.admin.model.SysRole;
 import com.ryzin.penguin.admin.model.SysRoleExample;
 import java.util.List;
@@ -27,4 +29,6 @@ public interface SysRoleMapper {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+    
+    List<SysRole> findPage();
 }

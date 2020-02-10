@@ -149,6 +149,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dept
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update sys_dept
     <set>

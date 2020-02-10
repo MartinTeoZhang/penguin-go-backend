@@ -90,6 +90,11 @@
     from sys_role
     where role_id = #{roleId,jdbcType=BIGINT}
   </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_role
     where role_id = #{roleId,jdbcType=BIGINT}
