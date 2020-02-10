@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ryzin.penguin.admin.dao.SysMenuMapper;
-import com.ryzin.penguin.admin.dao.SysRoleMenuMapper;
 import com.ryzin.penguin.admin.model.SysMenu;
 import com.ryzin.penguin.admin.service.SysMenuService;
-import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -22,8 +20,6 @@ public class SysMenuServiceImpl implements SysMenuService {
 	@Autowired
 	private SysMenuMapper sysMenuMapper;
 	
-	@Autowired
-	private SysRoleMenuMapper sysRoleMenuMapper;
 	
 	@Override
 	public int save(SysMenu record) {
@@ -55,10 +51,6 @@ public class SysMenuServiceImpl implements SysMenuService {
 	
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
-		ColumnFilter columnFilter = pageRequest.getColumnFilter(NAME);
-		if(columnFilter != null) {
-			return MybatisPageHelper.findPage(pageRequest, sysMenuMapper, "findPageByName", columnFilter.getValue());
-		}
 		return MybatisPageHelper.findPage(pageRequest, sysMenuMapper);
 	}
 
@@ -76,7 +68,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	}
 
 	private List<SysMenu> findByUser(String userName) {
-		if(userName == null) {
+		if(userName == null || "admin".equalsIgnoreCase(userName)) {
 			return sysMenuMapper.findAll();
 		}
 		return sysMenuMapper.findPageByUserName(userName);

@@ -46,11 +46,6 @@ public class SysUserController {
 		return HttpResult.ok(sysUserService.delete(records));
 	}
 
-	@GetMapping(value="/findById")
-	public HttpResult findById(@RequestParam Long id) {
-		return HttpResult.ok(sysUserService.findById(id));
-	}
-
 	@GetMapping(value="/findByUserName")
 	public HttpResult findByUserName(@RequestParam String username) {
 		return HttpResult.ok(sysUserService.findByUserName(username));

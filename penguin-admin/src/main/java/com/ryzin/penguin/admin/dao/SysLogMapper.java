@@ -2,9 +2,10 @@ package com.ryzin.penguin.admin.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ryzin.penguin.admin.model.SysLog;
 import com.ryzin.penguin.admin.model.SysLogExample;
-import org.apache.ibatis.annotations.Param;
 
 public interface SysLogMapper {
     long countByExample(SysLogExample example);
@@ -30,4 +31,6 @@ public interface SysLogMapper {
     int updateByPrimaryKey(SysLog record);
     
     List<SysLog> findPage();
+    
+    List<SysLog> findPageByUserName(@Param(value="username") String username);
 }

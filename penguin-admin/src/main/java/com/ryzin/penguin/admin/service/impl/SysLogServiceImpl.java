@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ryzin.penguin.admin.dao.SysLogMapper;
 import com.ryzin.penguin.admin.model.SysLog;
 import com.ryzin.penguin.admin.service.SysLogService;
+import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -48,6 +49,10 @@ public class SysLogServiceImpl  implements SysLogService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
+		ColumnFilter columnFilter = pageRequest.getColumnFilter(NAME);
+		if(columnFilter != null) {
+			return MybatisPageHelper.findPage(pageRequest, sysLogMapper, "findPageByName", columnFilter.getValue());
+		}
 		return MybatisPageHelper.findPage(pageRequest, sysLogMapper);
 	}
 	
