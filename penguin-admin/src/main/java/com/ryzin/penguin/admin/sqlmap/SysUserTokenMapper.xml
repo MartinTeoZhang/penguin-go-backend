@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.louis.kitty.admin.dao.SysUserTokenMapper">
-  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysUserToken">
+<mapper namespace="com.ryzin.penguin.admin.dao.SysUserTokenMapper">
+  <resultMap id="BaseResultMap" type="com.ryzin.penguin.admin.model.SysUserToken">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="token" jdbcType="VARCHAR" property="token" />
@@ -24,7 +24,7 @@
     delete from sys_user_token
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.louis.kitty.admin.model.SysUserToken">
+  <insert id="insert" parameterType="com.ryzin.penguin.admin.model.SysUserToken">
     insert into sys_user_token (id, user_id, token, 
       expire_time, create_by, create_time, 
       last_update_by, last_update_time)
@@ -32,7 +32,7 @@
       #{expireTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.SysUserToken">
+  <insert id="insertSelective" parameterType="com.ryzin.penguin.admin.model.SysUserToken">
     insert into sys_user_token
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.SysUserToken">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ryzin.penguin.admin.model.SysUserToken">
     update sys_user_token
     <set>
       <if test="userId != null">
@@ -114,7 +114,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.SysUserToken">
+  <update id="updateByPrimaryKey" parameterType="com.ryzin.penguin.admin.model.SysUserToken">
     update sys_user_token
     set user_id = #{userId,jdbcType=BIGINT},
       token = #{token,jdbcType=VARCHAR},
@@ -131,7 +131,7 @@
     from sys_user_token
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
-  <select id="findByToken" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="findByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_user_token

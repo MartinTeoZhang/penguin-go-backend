@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ryzin.penguin.admin.constants.SysConstants;
 import com.ryzin.penguin.admin.dao.SysMenuMapper;
 import com.ryzin.penguin.admin.model.SysMenu;
 import com.ryzin.penguin.admin.service.SysMenuService;
@@ -67,11 +68,12 @@ public class SysMenuServiceImpl implements SysMenuService {
 		return sysMenus;
 	}
 
-	private List<SysMenu> findByUser(String userName) {
-		if(userName == null || "admin".equalsIgnoreCase(userName)) {
+	@Override
+	public List<SysMenu> findByUser(String userName) {
+		if(userName == null || SysConstants.ADMIN.equalsIgnoreCase(userName)) {
 			return sysMenuMapper.findAll();
 		}
-		return sysMenuMapper.findPageByUserName(userName);
+		return sysMenuMapper.findByUserName(userName);
 	}
 
 	private void findChildren(List<SysMenu> SysMenus, List<SysMenu> menus) {

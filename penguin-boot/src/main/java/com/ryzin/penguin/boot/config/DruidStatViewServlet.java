@@ -1,8 +1,5 @@
 package com.ryzin.penguin.boot.config;
 
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-
 import com.alibaba.druid.support.http.StatViewServlet;
 
 // 如果不使用DruidConfig的Servlet和Filter配置， 也可以通过下述监控器配置实现：

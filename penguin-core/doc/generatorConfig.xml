@@ -13,7 +13,6 @@
           userId="admin" password="123456">
         </jdbcConnection>
 
-
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL 
 		和 NUMERIC 类型解析为java.math.BigDecimal -->		
 		<javaTypeResolver>

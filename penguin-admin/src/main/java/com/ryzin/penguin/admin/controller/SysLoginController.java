@@ -15,6 +15,7 @@ import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.model.SysUserToken;
 import com.ryzin.penguin.admin.service.SysUserService;
 import com.ryzin.penguin.admin.service.SysUserTokenService;
+import com.ryzin.penguin.admin.util.PasswordUtils;
 import com.ryzin.penguin.admin.vo.LoginBean;
 import com.ryzin.penguin.core.http.HttpResult;
 
@@ -46,18 +47,13 @@ public class SysLoginController {
 	}
 
 	/**
-	 * 登录
+	 * 登录接口
+	 * 在用户密码匹配成功之后，创建并保存token，最后将token返回给前台，以后请求带上token
 	 */
 	@PostMapping(value = "/sys/login")
 	public HttpResult login(@RequestBody LoginBean loginBean) throws IOException {
-		String captcha = loginBean.getCaptcha();
 		String username = loginBean.getUsername();
 		String password = loginBean.getPassword();
-
-//		String kaptcha = ShiroUtils.getKaptcha(KaptchaConstants.KAPTCHA_SESSION_KEY);
-//		if (!captcha.equalsIgnoreCase(kaptcha)) {
-//			return HttpResult.error("验证码不正确");
-//		}
 
 		// 用户信息
 		SysUser user = sysUserService.findByUserName(username);
@@ -67,9 +63,9 @@ public class SysLoginController {
 			return HttpResult.error("账号不存在");
 		}
 		
-//		if (!match(user, password)) {
-//			return HttpResult.error("密码不正确");
-//		}
+		if (!match(user, password)) {
+			return HttpResult.error("密码不正确");
+		}
 
 		// 账号锁定
 		if (user.getStatus() == 0) {
@@ -81,7 +77,13 @@ public class SysLoginController {
 		return HttpResult.ok(data);
 	}
 
-//	public boolean match(SysUser user, String password) {
-//		return user.getPassword().equals(PasswordUtils.encrypte(password, user.getSalt()));
-//	}
+	/**
+	 * 验证用户密码
+	 * @param user
+	 * @param password
+	 * @return
+	 */
+	public boolean match(SysUser user, String password) {
+		return user.getPassword().equals(PasswordUtils.encrypte(password, user.getSalt()));
+	}
 }
