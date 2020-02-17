@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ryzin.penguin.admin.model.SysMenu;
 import com.ryzin.penguin.admin.service.SysMenuService;
 import com.ryzin.penguin.core.http.HttpResult;
-import com.ryzin.penguin.core.page.PageRequest;
 
 
 @RestController
@@ -28,23 +27,18 @@ public class SysMenuController {
 		return HttpResult.ok(sysMenuService.save(record));
 	}
 
-	@PostMapping(value="/update")
-	public HttpResult update(@RequestBody SysMenu record) {
-		return HttpResult.ok(sysMenuService.update(record));
-	}
-
 	@PostMapping(value="/delete")
-	public HttpResult delete(@RequestBody SysMenu record) {
-		return HttpResult.ok(sysMenuService.delete(record));
-	}
-
-	@PostMapping(value="/deleteBatch")
 	public HttpResult delete(@RequestBody List<SysMenu> records) {
 		return HttpResult.ok(sysMenuService.delete(records));
 	}
 
-	@GetMapping(value="/findTree")
-	public HttpResult findTree(String userName) {
-		return HttpResult.ok(sysMenuService.findTree(userName));
+	@GetMapping(value="/findNavTree")
+	public HttpResult findNavTree(@RequestParam String userName) {
+		return HttpResult.ok(sysMenuService.findTree(userName, 1));
+	}
+	
+	@GetMapping(value="/findMenuTree")
+	public HttpResult findMenuTree() {
+		return HttpResult.ok(sysMenuService.findTree(null, 0));
 	}
 }

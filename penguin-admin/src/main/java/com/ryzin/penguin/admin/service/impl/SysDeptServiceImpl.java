@@ -14,18 +14,16 @@ import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
 
 @Service
-public class SysDeptServiceImpl  implements SysDeptService {
+public class SysDeptServiceImpl implements SysDeptService {
 
 	@Autowired
 	private SysDeptMapper sysDeptMapper;
 
 	@Override
 	public int save(SysDept record) {
-		return sysDeptMapper.insertSelective(record);
-	}
-
-	@Override
-	public int update(SysDept record) {
+		if(record.getDeptId() == null || record.getDeptId() == 0) {
+			return sysDeptMapper.insertSelective(record);
+		}
 		return sysDeptMapper.updateByPrimaryKeySelective(record);
 	}
 

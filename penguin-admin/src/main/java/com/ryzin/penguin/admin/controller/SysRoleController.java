@@ -27,17 +27,7 @@ public class SysRoleController {
 		return HttpResult.ok(sysRoleService.save(record));
 	}
 
-	@PostMapping(value="/update")
-	public HttpResult update(@RequestBody SysRole record) {
-		return HttpResult.ok(sysRoleService.update(record));
-	}
-
 	@PostMapping(value="/delete")
-	public HttpResult delete(@RequestBody SysRole record) {
-		return HttpResult.ok(sysRoleService.delete(record));
-	}
-
-	@PostMapping(value="/deleteBatch")
 	public HttpResult delete(@RequestBody List<SysRole> records) {
 		return HttpResult.ok(sysRoleService.delete(records));
 	}

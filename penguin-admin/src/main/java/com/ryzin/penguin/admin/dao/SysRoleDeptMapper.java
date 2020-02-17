@@ -1,8 +1,8 @@
 package com.ryzin.penguin.admin.dao;
 
+import java.util.List;
 import com.ryzin.penguin.admin.model.SysRoleDept;
 import com.ryzin.penguin.admin.model.SysRoleDeptExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SysRoleDeptMapper {

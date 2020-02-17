@@ -42,8 +42,18 @@ public class OAuth2Filter extends AuthenticatingFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        // 获取请求token，如果token不存在，直接返回401
-        String token = getRequestToken((HttpServletRequest) request);
+    	// 对于非简单的跨域请求，会事先发起一个OPTION类型的预检请求，只有预检请求成功才会发起真正的请求，
+    	// 而这个预检请求是不带 token 的，这就意味着这个预检请求会被 shiro 过滤器拦截并在 token 校验失败
+    	// 之后返回失败信息，从而不会再发起真正的请求。所以，可以让预检请求自动放行
+    	
+    	// 如果是跨域中复杂请求的预检请求（OPTIONS类型），因为预检请求不带token, 所以不需要验证token
+    	HttpServletRequest httpRequest = (HttpServletRequest) request;
+    	if("OPTIONS".equals(httpRequest.getMethod())) {
+    		 return true;
+    	}
+    	
+    	// 获取请求token，如果token不存在，直接返回401
+    	String token = getRequestToken(httpRequest);
         if(StringUtils.isBlank(token)){
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             HttpResult result = HttpResult.error(HttpStatus.SC_UNAUTHORIZED, "invalid token");

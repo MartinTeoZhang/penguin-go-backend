@@ -30,25 +30,15 @@ public class SysUserController {
 	public HttpResult save(@RequestBody SysUser record) {
 		return HttpResult.ok(sysUserService.save(record));
 	}
-	
-	@PostMapping(value="/update")
-	public HttpResult update(@RequestBody SysUser record) {
-		return HttpResult.ok(sysUserService.update(record));
-	}
 
 	@PostMapping(value="/delete")
-	public HttpResult delete(@RequestBody SysUser record) {
-		return HttpResult.ok(sysUserService.delete(record));
-	}
-
-	@PostMapping(value="/deleteBatch")
 	public HttpResult delete(@RequestBody List<SysUser> records) {
 		return HttpResult.ok(sysUserService.delete(records));
 	}
 
 	@GetMapping(value="/findByUserName")
-	public HttpResult findByUserName(@RequestParam String username) {
-		return HttpResult.ok(sysUserService.findByUserName(username));
+	public HttpResult findByUserName(@RequestParam String userName) {
+		return HttpResult.ok(sysUserService.findByUserName(userName));
 	}
 	
 	@PostMapping(value="/findPage")
