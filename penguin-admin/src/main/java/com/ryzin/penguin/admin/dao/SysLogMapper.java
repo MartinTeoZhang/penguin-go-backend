@@ -5,26 +5,15 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.ryzin.penguin.admin.model.SysLog;
-import com.ryzin.penguin.admin.model.SysLogExample;
 
 public interface SysLogMapper {
-    long countByExample(SysLogExample example);
-
-    int deleteByExample(SysLogExample example);
-
     int deleteByPrimaryKey(Long id);
 
     int insert(SysLog record);
 
     int insertSelective(SysLog record);
 
-    List<SysLog> selectByExample(SysLogExample example);
-
     SysLog selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") SysLog record, @Param("example") SysLogExample example);
-
-    int updateByExample(@Param("record") SysLog record, @Param("example") SysLogExample example);
 
     int updateByPrimaryKeySelective(SysLog record);
 
@@ -32,5 +21,5 @@ public interface SysLogMapper {
     
     List<SysLog> findPage();
     
-    List<SysLog> findPageByUserName(@Param(value="username") String username);
+    List<SysLog> findPageByUserName(@Param(value="userName") String userName);
 }

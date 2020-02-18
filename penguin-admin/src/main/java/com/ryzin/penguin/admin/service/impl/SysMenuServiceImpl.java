@@ -24,7 +24,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	
 	@Override
 	public int save(SysMenu record) {
-		if(record.getMenuId() == null || record.getMenuId() == 0) {
+		if(record.getId() == null || record.getId() == 0) {
 			return sysMenuMapper.insertSelective(record);
 		}
 		return sysMenuMapper.updateByPrimaryKeySelective(record);
@@ -32,7 +32,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 
 	@Override
 	public int delete(SysMenu record) {
-		return sysMenuMapper.deleteByPrimaryKey(record.getMenuId());
+		return sysMenuMapper.deleteByPrimaryKey(record.getId());
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 					// 如果是获取类型不需要按钮，且菜单类型是按钮的，直接过滤掉
 					continue ;
 				}
-				if (SysMenu.getMenuId() != null && SysMenu.getMenuId().equals(menu.getParentId())) {
+				if (SysMenu.getId() != null && SysMenu.getId().equals(menu.getParentId())) {
 					children.add(menu);
 				}
 			}

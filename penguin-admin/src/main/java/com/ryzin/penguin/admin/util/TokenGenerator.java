@@ -6,7 +6,7 @@ import java.util.UUID;
 import com.ryzin.penguin.core.exception.PenguinException;
 
 /**
- * token generator
+ * token 生成器
  * @author 
  * @date 
  */

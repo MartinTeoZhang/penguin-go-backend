@@ -22,6 +22,19 @@
   </properties>
 
   <dependencies>
+  
+	<!-- mbg -->
+    <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+    </dependency>
+
+	<!-- mysqlconnectorjava -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+  	
 	<!-- pageHelper -->
 	<dependency>
 		<groupId>com.github.pagehelper</groupId>

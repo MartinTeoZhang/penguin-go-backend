@@ -3,94 +3,21 @@
 <mapper namespace="com.ryzin.penguin.admin.dao.SysLogMapper">
   <resultMap id="BaseResultMap" type="com.ryzin.penguin.admin.model.SysLog">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="operation" jdbcType="VARCHAR" property="operation" />
     <result column="method" jdbcType="VARCHAR" property="method" />
     <result column="params" jdbcType="VARCHAR" property="params" />
     <result column="time" jdbcType="BIGINT" property="time" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
-    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="last_update_by" jdbcType="BIGINT" property="lastUpdateBy" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
-    id, username, operation, method, params, time, ip, create_by, create_time, last_update_by, 
+    id, user_name, operation, method, params, time, ip, create_by, create_time, last_update_by, 
     last_update_time
   </sql>
-  <select id="selectByExample" parameterType="com.ryzin.penguin.admin.model.SysLogExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from sys_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -101,21 +28,15 @@
     delete from sys_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ryzin.penguin.admin.model.SysLogExample">
-    delete from sys_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <insert id="insert" parameterType="com.ryzin.penguin.admin.model.SysLog">
-    insert into sys_log (id, username, operation, 
+    insert into sys_log (id, user_name, operation, 
       method, params, time, 
       ip, create_by, create_time, 
       last_update_by, last_update_time)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, 
       #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
-      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+      #{ip,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ryzin.penguin.admin.model.SysLog">
     insert into sys_log
@@ -123,8 +44,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="username != null">
-        username,
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="operation != null">
         operation,
@@ -158,8 +79,8 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="operation != null">
         #{operation,jdbcType=VARCHAR},
@@ -176,77 +97,25 @@
       <if test="ip != null">
         #{ip,jdbcType=VARCHAR},
       </if>
-	  <if test="createBy != null">
-        #{createBy,jdbcType=BIGINT},
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="lastUpdateBy != null">
-        #{lastUpdateBy,jdbcType=BIGINT},
+        #{lastUpdateBy,jdbcType=VARCHAR},
       </if>
       <if test="lastUpdateTime != null">
         #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ryzin.penguin.admin.model.SysLogExample" resultType="java.lang.Long">
-    select count(*) from sys_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sys_log
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.operation != null">
-        operation = #{record.operation,jdbcType=VARCHAR},
-      </if>
-      <if test="record.method != null">
-        method = #{record.method,jdbcType=VARCHAR},
-      </if>
-      <if test="record.params != null">
-        params = #{record.params,jdbcType=VARCHAR},
-      </if>
-      <if test="record.time != null">
-        time = #{record.time,jdbcType=BIGINT},
-      </if>
-      <if test="record.ip != null">
-        ip = #{record.ip,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createDate != null">
-        create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sys_log
-    set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      operation = #{record.operation,jdbcType=VARCHAR},
-      method = #{record.method,jdbcType=VARCHAR},
-      params = #{record.params,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=BIGINT},
-      ip = #{record.ip,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ryzin.penguin.admin.model.SysLog">
     update sys_log
     <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="operation != null">
         operation = #{operation,jdbcType=VARCHAR},
@@ -264,13 +133,13 @@
         ip = #{ip,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null">
-        create_by = #{createBy,jdbcType=BIGINT},
+        create_by = #{createBy,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="lastUpdateBy != null">
-        last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
       </if>
       <if test="lastUpdateTime != null">
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
@@ -280,15 +149,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ryzin.penguin.admin.model.SysLog">
     update sys_log
-    set username = #{username,jdbcType=VARCHAR},
+    set user_name = #{userName,jdbcType=VARCHAR},
       operation = #{operation,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},
       params = #{params,jdbcType=VARCHAR},
       time = #{time,jdbcType=BIGINT},
       ip = #{ip,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_by = #{lastUpdateBy,jdbcType=BIGINT},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -298,10 +167,10 @@
     from sys_log
   </select>
   <select id="findPageByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="pattern" value="'%' + _parameter.username + '%'" />
+  <bind name="pattern" value="'%' + _parameter.userName + '%'" />
     select 
     <include refid="Base_Column_List" />
     from sys_log
-    where username like #{pattern}
+    where user_name like #{pattern}
   </select>
 </mapper>

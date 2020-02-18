@@ -22,16 +22,6 @@ public class ShiroUtils {
 		return user == null ? null : ((SysUser) user);
 	}
 
-	public static Long getUserId() {
-		SysUser user = getUser();
-		return user == null? null : user.getUserId();
-	}
-	
-	public static String getUserName() {
-		SysUser user = getUser();
-		return user == null? null : user.getUserName();
-	}
-	
 	public static void setSessionAttribute(Object key, Object value) {
 		getSession().setAttribute(key, value);
 	}
