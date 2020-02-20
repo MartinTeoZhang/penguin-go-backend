@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ryzin.penguin.admin.constants.SysConstants;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysUserService;
 import com.ryzin.penguin.admin.util.PasswordUtils;
@@ -30,9 +31,15 @@ public class SysUserController {
 	
 	@PostMapping(value="/save")
 	public HttpResult save(@RequestBody SysUser record) {
+		SysUser user = sysUserService.findById(record.getId());
+		if(user == null) {
+			return HttpResult.error("用户信息存在!");
+		}
+		if(SysConstants.ADMIN.equalsIgnoreCase(user.getName())) {
+			return HttpResult.error("超级管理员不允许修改!");
+		}
 		if(record.getPassword() != null) {
-			SysUser user = sysUserService.findById(record.getId());
-			if(user == null || !record.getPassword().equals(user.getPassword())) {
+			if(!record.getPassword().equals(user.getPassword())) {
 				String salt = PasswordUtils.getSalt();
 				String password = PasswordUtils.encrypte(record.getPassword(), salt);
 				record.setSalt(salt);
@@ -44,6 +51,12 @@ public class SysUserController {
 
 	@PostMapping(value="/delete")
 	public HttpResult delete(@RequestBody List<SysUser> records) {
+		for(SysUser record:records) {
+			SysUser sysUser = sysUserService.findById(record.getId());
+			if(sysUser != null && SysConstants.ADMIN.equalsIgnoreCase(sysUser.getName())) {
+				return HttpResult.error("超级管理员不允许删除!");
+			}
+		}
 		return HttpResult.ok(sysUserService.delete(records));
 	}
 
