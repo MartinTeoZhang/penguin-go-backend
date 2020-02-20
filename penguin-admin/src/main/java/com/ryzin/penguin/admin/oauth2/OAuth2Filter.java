@@ -46,9 +46,9 @@ public class OAuth2Filter extends AuthenticatingFilter {
     	// 而这个预检请求是不带 token 的，这就意味着这个预检请求会被 shiro 过滤器拦截并在 token 校验失败
     	// 之后返回失败信息，从而不会再发起真正的请求。所以，可以让预检请求自动放行
     	
-    	// 如果是跨域中复杂请求的预检请求（OPTIONS类型），因为预检请求不带token, 所以不需要验证token
     	HttpServletRequest httpRequest = (HttpServletRequest) request;
     	if("OPTIONS".equals(httpRequest.getMethod())) {
+    		// 如果是跨域中复杂请求的预检请求（OPTIONS类型），因为预检请求不带token, 所以不需要验证token
     		 return true;
     	}
     	
