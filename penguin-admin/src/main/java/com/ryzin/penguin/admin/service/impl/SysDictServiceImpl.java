@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ryzin.penguin.admin.dao.SysDictMapper;
 import com.ryzin.penguin.admin.model.SysDict;
 import com.ryzin.penguin.admin.service.SysDictService;
+import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -46,6 +47,10 @@ public class SysDictServiceImpl  implements SysDictService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
+		ColumnFilter columnFilter = pageRequest.getColumnFilter("label");
+		if(columnFilter != null) {
+			return MybatisPageHelper.findPage(pageRequest, sysDictMapper, "findPageByLabel", columnFilter.getValue());
+		}
 		return MybatisPageHelper.findPage(pageRequest, sysDictMapper);
 	}
 	

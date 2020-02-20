@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ryzin.penguin.admin.dao.SysRoleMapper;
 import com.ryzin.penguin.admin.model.SysRole;
 import com.ryzin.penguin.admin.service.SysRoleService;
+import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -46,6 +47,10 @@ public class SysRoleServiceImpl  implements SysRoleService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
+		ColumnFilter columnFilter = pageRequest.getColumnFilter("name");
+		if(columnFilter != null && columnFilter.getValue() != null) {
+			return MybatisPageHelper.findPage(pageRequest, sysRoleMapper, "findPageByName", columnFilter.getValue());
+		}
 		return MybatisPageHelper.findPage(pageRequest, sysRoleMapper);
 	}
 	

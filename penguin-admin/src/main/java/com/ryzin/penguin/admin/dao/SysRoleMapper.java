@@ -2,6 +2,8 @@ package com.ryzin.penguin.admin.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ryzin.penguin.admin.model.SysRole;
 
 public interface SysRoleMapper {
@@ -20,4 +22,6 @@ public interface SysRoleMapper {
     List<SysRole> findPage();
 
 	List<SysRole> findAll();
+	
+	List<SysRole> findPageByName(@Param(value="name") String name);
 }

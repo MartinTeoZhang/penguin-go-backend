@@ -51,7 +51,7 @@ public class SysLoginController {
 	 * 登录接口
 	 * 在用户密码匹配成功之后，创建并保存token，最后将token返回给前台，以后请求带上token
 	 */
-	@PostMapping(value = "/sys/login")
+	@PostMapping(value = "/login")
 	public HttpResult login(@RequestBody LoginBean loginBean) throws IOException {
 		String userName = loginBean.getAccount();
 		String password = loginBean.getPassword();
@@ -91,7 +91,7 @@ public class SysLoginController {
 	/**
 	 * 登出接口
 	 */
-	@GetMapping(value = "/sys/logout")
+	@GetMapping(value = "/logout")
 	public HttpResult logout() {
 		ShiroUtils.logout();
 		return HttpResult.ok();
