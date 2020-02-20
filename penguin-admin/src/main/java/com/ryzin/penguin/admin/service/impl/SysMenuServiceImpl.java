@@ -59,6 +59,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		List<SysMenu> menus = findByUser(userName);
 		for (SysMenu menu : menus) {
 			if (menu.getParentId() == null || menu.getParentId() == 0) {
+				menu.setLevel(0);
 				sysMenus.add(menu);
 			}
 		}
@@ -83,6 +84,8 @@ public class SysMenuServiceImpl implements SysMenuService {
 					continue ;
 				}
 				if (SysMenu.getId() != null && SysMenu.getId().equals(menu.getParentId())) {
+					menu.setParentName(SysMenu.getName());
+					menu.setLevel(SysMenu.getLevel() + 1);
 					children.add(menu);
 				}
 			}
