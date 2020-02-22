@@ -54,4 +54,8 @@ public class SysDictServiceImpl  implements SysDictService {
 		return MybatisPageHelper.findPage(pageRequest, sysDictMapper);
 	}
 	
+	@Override
+	public List<SysDict> findByLabel(String label) {
+		return sysDictMapper.findByLabel(label);
+	}
 }

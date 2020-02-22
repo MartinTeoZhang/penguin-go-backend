@@ -14,6 +14,7 @@ import com.ryzin.penguin.admin.constants.SysConstants;
 import com.ryzin.penguin.admin.dao.SysRoleMapper;
 import com.ryzin.penguin.admin.model.SysRole;
 import com.ryzin.penguin.admin.model.SysRoleMenu;
+import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysRoleService;
 import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
@@ -29,6 +30,16 @@ public class SysRoleController {
 	
 	@PostMapping(value="/save")
 	public HttpResult save(@RequestBody SysRole record) {
+		SysRole role = sysRoleService.findById(record.getId());
+		if(role != null) {
+			if(SysConstants.ADMIN.equalsIgnoreCase(role.getName())) {
+				return HttpResult.error("超级管理员不允许修改!");
+			}
+		}
+		// 新增角色
+		if((record.getId() == null || record.getId() ==0) && !sysRoleService.findByName(record.getName()).isEmpty()) {
+			return HttpResult.error("角色名已存在!");
+		}
 		return HttpResult.ok(sysRoleService.save(record));
 	}
 
@@ -47,9 +58,9 @@ public class SysRoleController {
 		return HttpResult.ok(sysRoleService.findAll());
 	}
 	
-	@GetMapping(value="/findMenus")
-	public HttpResult findRoles(@RequestParam Long roleId) {
-		return HttpResult.ok(sysRoleService.findMenus(roleId));
+	@GetMapping(value="/findRoleMenus")
+	public HttpResult findRoleMenus(@RequestParam Long roleId) {
+		return HttpResult.ok(sysRoleService.findRoleMenus(roleId));
 	}
 	
 	@PostMapping(value="/saveRoleMenus")

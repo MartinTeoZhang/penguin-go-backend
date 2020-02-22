@@ -3,9 +3,11 @@ package com.ryzin.penguin.admin.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ryzin.penguin.admin.model.SysDict;
@@ -33,5 +35,10 @@ public class SysDictController {
 	@PostMapping(value="/findPage")
 	public HttpResult findPage(@RequestBody PageRequest pageRequest) {
 		return HttpResult.ok(sysDictService.findPage(pageRequest));
+	}
+	
+	@GetMapping(value="/findByLabel")
+	public HttpResult findByLabel(@RequestParam String label) {
+		return HttpResult.ok(sysDictService.findByLabel(label));
 	}
 }
