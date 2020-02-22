@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ryzin.penguin.admin.constants.SysConstants;
+import com.ryzin.penguin.admin.dao.SysRoleMapper;
 import com.ryzin.penguin.admin.model.SysRole;
+import com.ryzin.penguin.admin.model.SysRoleMenu;
 import com.ryzin.penguin.admin.service.SysRoleService;
 import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
@@ -21,6 +24,8 @@ public class SysRoleController {
 
 	@Autowired
 	private SysRoleService sysRoleService;
+	@Autowired
+	private SysRoleMapper sysRoleMapper;
 	
 	@PostMapping(value="/save")
 	public HttpResult save(@RequestBody SysRole record) {
@@ -40,5 +45,22 @@ public class SysRoleController {
 	@GetMapping(value="/findAll")
 	public HttpResult findAll() {
 		return HttpResult.ok(sysRoleService.findAll());
+	}
+	
+	@GetMapping(value="/findMenus")
+	public HttpResult findRoles(@RequestParam Long roleId) {
+		return HttpResult.ok(sysRoleService.findMenus(roleId));
+	}
+	
+	@PostMapping(value="/saveRoleMenus")
+	public HttpResult saveRoleMenus(@RequestBody List<SysRoleMenu> records) {
+		for(SysRoleMenu record:records) {
+			SysRole sysRole = sysRoleMapper.selectByPrimaryKey(record.getRoleId());
+			if(SysConstants.ADMIN.equalsIgnoreCase(sysRole.getName())) {
+				// 如果是超级管理员，不允许修改
+				return HttpResult.error("超级管理员拥有所有菜单权限，不允许修改！");
+			}
+		}
+		return HttpResult.ok(sysRoleService.saveRoleMenus(records));
 	}
 }

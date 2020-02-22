@@ -1,5 +1,8 @@
 package com.ryzin.penguin.admin.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SysUser extends BaseModel {
 
     private String name;
@@ -19,6 +22,10 @@ public class SysUser extends BaseModel {
     private Byte delFlag;
 
     private String deptName;
+    
+    private String roleNames;
+    
+    private List<SysUserRole> userRoles = new ArrayList<>();
     
     public String getName() {
 		return name;
@@ -90,6 +97,22 @@ public class SysUser extends BaseModel {
     
     public void setDelFlag(Byte delFlag) {
 		this.delFlag = delFlag;
+	}
+    
+	public String getRoleNames() {
+		return roleNames;
+	}
+
+	public void setRoleNames(String roleNames) {
+		this.roleNames = roleNames;
+	}
+
+	public List<SysUserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(List<SysUserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 }
