@@ -57,7 +57,7 @@ public class SysLogAspect {
 		SysLog sysLog = new SysLog();
 		
 //		Method method = signature.getMethod();
-//		com.louis.merak.admin.annotation.SysLog syslogAnno = method.getAnnotation(com.louis.merak.admin.annotation.SysLog.class);
+//		com.ryzin.merak.admin.annotation.SysLog syslogAnno = method.getAnnotation(com.ryzin.merak.admin.annotation.SysLog.class);
 //		if(syslogAnno != null){
 //			//注解上的描述
 //			sysLog.setOperation(syslogAnno.value());
