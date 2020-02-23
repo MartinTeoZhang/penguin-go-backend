@@ -11,7 +11,8 @@
 	</parent>
 
 	<artifactId>penguin-backup</artifactId>
-	<packaging>jar</packaging>
+	<version>${project.version}</version>
+	<packaging>war</packaging>
 
 	<name>penguin-backup</name>
 	<description>penguin backup service</description>
@@ -19,6 +20,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.version>1.0.0</project.version>
 		<java.version>1.8</java.version>
 		<swagger.version>2.8.0</swagger.version>
 	</properties>
@@ -53,5 +55,12 @@
 		   <groupId>javax.xml.bind</groupId>
 		   <artifactId>jaxb-api</artifactId>
 		</dependency>
+		
+		<!-- tomcat 配置 -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 </project>

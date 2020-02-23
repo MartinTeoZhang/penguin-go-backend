@@ -13,7 +13,7 @@
 	<artifactId>penguin-boot</artifactId>
 	<name>penguin-boot</name>
 	<description>penguin-boot</description>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -87,6 +87,12 @@
 			<artifactId>penguin-core</artifactId>
 		</dependency>
 
+		<!-- tomcat 配置 -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

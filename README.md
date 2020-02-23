@@ -140,3 +140,8 @@
 2. 新建 Feat_xxx 分支
 3. 提交代码
 4. 新建 Pull Request
+
+### 参考
+1. [廖雪峰的Java教程](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200)
+2. [朝雨忆轻尘的博客](https://www.cnblogs.com/xifengxiaoma/)
+3. [Vue.js官网教程](https://cn.vuejs.org/v2/guide/)
