@@ -71,14 +71,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-<!-- 		<resources>
+ 		<resources>
 			<resource>
 				<directory>_backup</directory>
 				<includes>
-					<include>**/*.sql</include>
+					<include>**/*</include>
 				</includes>
 				<filtering>false</filtering>
 			</resource>
-		</resources> -->
+		</resources>
 	</build>
 </project>

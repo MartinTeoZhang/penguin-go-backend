@@ -48,6 +48,7 @@ public class ShiroConfig {
         filterMap.put("/webjars/springfox-swagger-ui/**", "anon");
         // 其他所有路径交给OAuth2Filter处理
 		filterMap.put("/**", "oauth2");
+//		filterMap.put("/**", "anon");
 		
 //		加了Shiro之后每次调试接口都需要传递token，对我们开发来说也是麻烦，如有需要可以通过以下方法取消验证。
 //		在 ShiroConfig 配置类中，把接口路径映射到 anon 过滤器，调试时就不需要 token 验证了
