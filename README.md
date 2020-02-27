@@ -105,6 +105,7 @@
 
     找到 penguin-boot 工程下的 PenguinApplication.java, 执行 Java 程序，启动项目。
 
+
 #### 前端安装
 
 1. 下载源码
@@ -127,6 +128,64 @@
 
     通过修改src/mock/index.js中的openMock变量，可以一键开启或关闭Mock功能。
 
+
+#### 部署项目至docker
+
+1. 拉取tomcat和mysql两个镜像
+
+> sudo docker pull tomcat:latest
+> sudo docker pull mysql:latest
+
+    镜像下载完成之后，通过以下命令查看下载的镜像
+> sudo docker images
+
+2. 创建mysql容器（宿主机映射3306端口至容器3306端口，容器别名为mysql，使用mysql:latest镜像）
+
+> sudo docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
+    查看正在运行的容器
+> sudo docker ps
+
+    进入容器
+> sudo docker exec -it  [容器别名或容器id]  /bin/bash
+
+    使用navicat远程连接mysql容器，并创建penguin数据库，导入sql文件
+
+3. 创建tomcat容器（宿主机映射8080端口至容器8080端口，容器别名为tomcat，使用tomcat:latest镜像，连接容器至mysql容器，db为容器间连接别名，宿主机文件夹/usr/soft/tomcat/webapps映射至容器文件夹/usr/local/tomcat/webapps）
+
+> sudo docker run --name tomcat --link mysql:db -p 8080:8080 -v /usr/soft/tomcat/webapps:/usr/local/tomcat/webapps -d tomcat:latest 
+
+    测试容器间连接（先要在容器内安装相应包）
+> ping db
+
+    在容器中安装mysql（用于系统备份还原命令）
+
+    测试外部访问 服务器IP:端口号
+
+    访问tomcat首页成功后，tomcat首页的GUI管理需要修改以下文件才能访问，具体看对应页面报错内容
+> /usr/local/tomcat/conf/tomcat-users.xml
+> cat [路径] 直接展示文件内容  sudo gedit [文件] 用文本编辑器打开 
+> sudo docker cp tomcat:/usr/local/tomcat/...  [路径] 复制容器内容到宿主机
+
+    同时，tomcat的默认端口还有很大概率会冲突，所以要修改以下文件避免冲突
+> /usr/local/tomcat/conf/server.xml
+
+    注意，需要修改application.yml文件中jdbc的访问路径，由于是容器与容器间访问，服务器IP修改成容器间连接别名。且用户名和密码要需要mysql容器中存在，IP允许/有权限
+    
+    在tomcat的Manager App GUI页面中，部署后端maven clean install生成的war文件，利用的是FTP传输，路径是
+> /usr/local/tomcat/webapps/项目名
+    
+    前端同时也要修改后台接口和备份接口地址，并部署到路径
+> /usr/local/tomcat/webapps/项目名
+
+4. 测试运行
+
+    在tomcat容器中的bin目录存在许多可运行文件，运行以下命令使tomcat进程在前台启动，直接看到输出
+
+> ./catalina.sh run
+
+    注意，后端要求的依赖，如java版本，mysql-connector版本需要与docker中版本对应。依赖的冲突是很常见的，具体看输出报错
+    
 
 ### 使用说明
 

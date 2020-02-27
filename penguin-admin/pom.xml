@@ -75,6 +75,13 @@
 			<groupId>com.ryzin</groupId>
 			<artifactId>penguin-core</artifactId>
 		</dependency>
+		
+		<!--spring-boot-admin-->
+       	<dependency>
+		    <groupId>de.codecentric</groupId>
+		    <artifactId>spring-boot-admin-starter-client</artifactId>
+		    <version>2.2.0</version>
+		</dependency>
 	</dependencies>
 
 </project>

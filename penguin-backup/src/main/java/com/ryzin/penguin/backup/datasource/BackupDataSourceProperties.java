@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 // 配置属性读取配置类
 @Component  
-@ConfigurationProperties(prefix = "spring.backup.datasource")  
+@ConfigurationProperties(prefix = "penguin.backup.datasource")  
 public class BackupDataSourceProperties {
 	
 	private String host;
