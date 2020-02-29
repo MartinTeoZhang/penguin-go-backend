@@ -18,8 +18,9 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 
-// 配置Servlet和Filter
-
+/**
+ * Druid数据源配置
+ */
 @Configuration
 @EnableConfigurationProperties({DruidDataSourceProperties.class}) // 用于导入上一步Druid的配置信息
 public class DruidConfig {

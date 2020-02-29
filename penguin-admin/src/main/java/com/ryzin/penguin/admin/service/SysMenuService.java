@@ -5,6 +5,9 @@ import java.util.List;
 import com.ryzin.penguin.admin.model.SysMenu;
 import com.ryzin.penguin.core.service.CurdService;
 
+/**
+ * 菜单管理
+ */
 public interface SysMenuService extends CurdService<SysMenu> {
 
 	/**

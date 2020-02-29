@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 
+/**
+ * 启动器
+ */
 @EnableAdminServer
 @SpringBootApplication
 public class PenguinMonitorApplication {

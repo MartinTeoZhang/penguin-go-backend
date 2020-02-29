@@ -1,5 +1,8 @@
 package com.ryzin.penguin.admin.constants;
 
+/**
+ * 常量管理
+ */ 
 public interface SysConstants {
 
 	/**

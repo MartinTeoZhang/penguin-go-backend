@@ -1,5 +1,8 @@
 package com.ryzin.penguin.backup.util;
 
+/**
+ * HTTP结果封装
+ */
 public class HttpResult {
 
 	private int code = 200;

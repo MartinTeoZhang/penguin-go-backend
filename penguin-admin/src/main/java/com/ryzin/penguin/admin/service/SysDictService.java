@@ -5,6 +5,9 @@ import java.util.List;
 import com.ryzin.penguin.admin.model.SysDict;
 import com.ryzin.penguin.core.service.CurdService;
 
+/**
+ * 字典管理
+ */
 public interface SysDictService extends CurdService<SysDict> {
 
 	/**

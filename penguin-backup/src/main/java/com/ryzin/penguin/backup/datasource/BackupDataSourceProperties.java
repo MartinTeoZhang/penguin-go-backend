@@ -3,7 +3,9 @@ package com.ryzin.penguin.backup.datasource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-// 配置属性读取配置类
+/**
+ * 数据源
+ */
 @Component  
 @ConfigurationProperties(prefix = "penguin.backup.datasource")  
 public class BackupDataSourceProperties {

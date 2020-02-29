@@ -9,7 +9,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-// swagger配置类（测试备份还原接口）
+/**
+ * Swagger配置
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

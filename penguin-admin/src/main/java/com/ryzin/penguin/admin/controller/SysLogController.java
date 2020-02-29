@@ -10,7 +10,9 @@ import com.ryzin.penguin.admin.service.SysLogService;
 import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
 
-
+/**
+ * 日志控制器
+ */
 @RestController
 @RequestMapping("log")
 public class SysLogController {

@@ -14,7 +14,9 @@ import com.ryzin.penguin.admin.model.SysMenu;
 import com.ryzin.penguin.admin.service.SysMenuService;
 import com.ryzin.penguin.core.http.HttpResult;
 
-
+/**
+ * 菜单控制器
+ */
 @RestController
 @RequestMapping("menu")
 public class SysMenuController {

@@ -15,9 +15,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ryzin.penguin.admin.util.ShiroUtils;
-import com.ryzin.penguin.common.utils.DateTimeUtils;
 import com.ryzin.penguin.common.utils.StringUtils;
 
+/**
+ * DAO切面
+ * 插入创建人，创建时间，修改人，修改时间
+ */
 @Aspect
 @Component
 @Configuration

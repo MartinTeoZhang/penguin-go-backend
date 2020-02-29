@@ -7,8 +7,9 @@ import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.model.SysUserRole;
 import com.ryzin.penguin.core.service.CurdService;
 
-// SysUserService 接口
-
+/**
+ * 用户管理
+ */
 public interface SysUserService extends CurdService<SysUser> {
 
 	SysUser findByName(String username);

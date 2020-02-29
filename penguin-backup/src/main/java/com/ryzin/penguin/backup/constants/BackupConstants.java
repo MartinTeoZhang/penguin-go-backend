@@ -2,6 +2,9 @@ package com.ryzin.penguin.backup.constants;
 
 import java.io.File;
 
+/**
+ * 常量类
+ */
 public interface BackupConstants {
 	
 	/** 备份目录 */

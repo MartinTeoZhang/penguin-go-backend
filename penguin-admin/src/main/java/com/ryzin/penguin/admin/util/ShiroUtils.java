@@ -7,6 +7,9 @@ import org.apache.shiro.subject.Subject;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.core.exception.PenguinException;
 
+/**
+ * Shiro相关工具类
+ */
 public class ShiroUtils {
 
 	public static Session getSession() {
@@ -36,15 +39,6 @@ public class ShiroUtils {
 
 	public static void logout() {
 		SecurityUtils.getSubject().logout();
-	}
-	
-	public static String getKaptcha(String key) {
-		Object kaptcha = getSessionAttribute(key);
-		if(kaptcha == null){
-			throw new PenguinException("验证码已失效");
-		}
-		getSession().removeAttribute(key);
-		return kaptcha.toString();
 	}
 
 }

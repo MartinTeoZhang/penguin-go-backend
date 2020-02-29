@@ -13,6 +13,9 @@ import com.ryzin.penguin.admin.model.SysDept;
 import com.ryzin.penguin.admin.service.SysDeptService;
 import com.ryzin.penguin.core.http.HttpResult;
 
+/**
+ * 机构控制器
+ */
 @RestController
 @RequestMapping("dept")
 public class SysDeptController {

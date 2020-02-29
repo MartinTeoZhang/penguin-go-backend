@@ -15,6 +15,9 @@ import com.ryzin.penguin.admin.service.SysDictService;
 import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
 
+/**
+ * 字典控制器
+ */
 @RestController
 @RequestMapping("dict")
 public class SysDictController {

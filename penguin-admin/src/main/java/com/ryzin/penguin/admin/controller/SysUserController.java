@@ -20,6 +20,9 @@ import com.ryzin.penguin.core.page.PageRequest;
 
 // SysUserController restful 接口，返回JSON数据格式，提供外部调用
 
+/**
+ * 用户控制器
+ */
 @RestController
 @RequestMapping("user")
 public class SysUserController {

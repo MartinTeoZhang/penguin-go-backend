@@ -3,6 +3,9 @@ package com.ryzin.penguin.backup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * 启动器
+ */
 @SpringBootApplication(scanBasePackages={"com.ryzin.penguin"})
 public class PenguinBackupApplication {
 

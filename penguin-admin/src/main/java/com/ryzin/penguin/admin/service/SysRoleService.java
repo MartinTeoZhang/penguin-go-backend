@@ -7,6 +7,9 @@ import com.ryzin.penguin.admin.model.SysRole;
 import com.ryzin.penguin.admin.model.SysRoleMenu;
 import com.ryzin.penguin.core.service.CurdService;
 
+/**
+ * 角色管理
+ */
 public interface SysRoleService extends CurdService<SysRole> {
 	/**
 	 * 查询全部

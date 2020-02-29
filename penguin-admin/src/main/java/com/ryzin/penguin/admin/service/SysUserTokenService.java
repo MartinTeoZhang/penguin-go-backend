@@ -4,7 +4,7 @@ import com.ryzin.penguin.admin.model.SysUserToken;
 import com.ryzin.penguin.core.service.CurdService;
 
 /**
- * 用户Token
+ * 用户Token管理
  * @author 
  * @date 
  */

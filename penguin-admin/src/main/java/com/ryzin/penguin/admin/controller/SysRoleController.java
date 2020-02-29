@@ -14,11 +14,13 @@ import com.ryzin.penguin.admin.constants.SysConstants;
 import com.ryzin.penguin.admin.dao.SysRoleMapper;
 import com.ryzin.penguin.admin.model.SysRole;
 import com.ryzin.penguin.admin.model.SysRoleMenu;
-import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.SysRoleService;
 import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
 
+/**
+ * 角色控制器
+ */
 @RestController
 @RequestMapping("role")
 public class SysRoleController {

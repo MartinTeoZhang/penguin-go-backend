@@ -1,5 +1,8 @@
 package com.ryzin.penguin.admin.vo;
 
+/**
+ * 登录接口封装对象
+ */
 public class LoginBean {
 
 	private String account;

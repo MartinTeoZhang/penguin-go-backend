@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+/**
+ * Mybatis配置
+ */
 @Configuration
 @MapperScan("com.ryzin.penguin.**.dao")    // 扫描DAO
 public class MybatisConfig {

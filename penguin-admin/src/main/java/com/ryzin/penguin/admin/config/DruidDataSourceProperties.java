@@ -2,8 +2,9 @@ package com.ryzin.penguin.admin.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-// 对druid进行自定义属性配置
-
+/**
+ * 数据源属性
+ */
 @ConfigurationProperties(prefix = "spring.datasource.druid")
 public class DruidDataSourceProperties {
 
