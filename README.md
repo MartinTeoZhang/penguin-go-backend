@@ -1,25 +1,35 @@
 # Penguin GO Backend
 
+### 项目运行
+演示地址：http://192.168.83.129:8080/penguin
+
+用户名：admin 密码：admin
+
+温馨提示：
+若曾在演示环境删除数据，可以右键头像菜单 -> 选择 -> 备份还原，恢复到系统默认备份数据。
+
 ### 项目介绍
 
 - Penguin GO 是基于 Spring Boot、Spring Cloud、Vue、Element 实现的 Java 快速开发平台。
 - 目标是搭建出一套简洁易用的快速解决方案，可以帮助开发者有效降低项目开发难度和成本。
 
 ### 功能计划
-- 登录注册：登录注册，第三方登录（QQ、微信、微博）
-- 用户管理：新建用户，修改用户，删除用户，查询用户
-- 机构管理：新建机构，修改机构，删除机构，查询机构
-- 角色管理：新建角色，修改角色，删除角色，查询角色
-- 菜单管理：新建菜单，修改菜单，删除菜单，查询菜单
-- 字典管理：新建字典，修改字典，删除字典，查询字典
-- 日志管理：记录用户操作日志，查看系统执行日志
-- 数据权限：结合用户机构关系，实现数据权限功能
-- 数据监控：定制 Druid 信息，提供有效的 SQL 监控
-- 单点登录：利用 OAuth2, 提供统一的单点登录功能
-- 聚合文档：定制在线文档，提供简洁美观的API文档
-- 微服务化：结合 Spring Cloud，实现系统微服务化
+- [x] 系统登录：系统用户登录，系统登录认证（token方式）
+- [x] 用户管理：新建用户，修改用户，删除用户，查询用户
+- [x] 机构管理：新建机构，修改机构，删除机构，查询机构
+- [x] 角色管理：新建角色，修改角色，删除角色，查询角色
+- [x] 菜单管理：新建菜单，修改菜单，删除菜单，查询菜单
+- [x] 字典管理：新建字典，修改字典，删除字典，查询字典
+- [x] 系统日志：记录用户操作日志，查看系统执行日志记录
+- [x] 数据监控：定制Druid信息，提供简洁有效的SQL监控
+- [x] 聚合文档：定制在线文档，提供简洁美观的API文档
+- [x] 备份还原：系统备份还原，一键恢复系统初始化数据
+- [x] 主题切换：支持主题切换，自定主题颜色，一键换肤
+- 微服务化：集成Spring Cloud，实现服务治理功能
 - 服务监控：结合微服务治理，实现服务的全方位监控
 - 服务限流：结合微服务治理，实现有效的服务限流
+- 单点登录：利用 OAuth2, 提供统一的单点登录功能
+- 系统登录：集成第三方登录功能（QQ、微信、微博）
 - ...
 
 ### 软件架构
@@ -45,11 +55,11 @@
 
 ##### 项目结构
 
-- penguin-pom： 统一管理 Maven 版本，打包配置
 - penguin-common： 公共代码模块，主要放置工具类
 - penguin-core： 核心代码模块，主要封装公共业务模块
 - penguin-admin： 后台管理模块，包含用户、角色、菜单管理等
-- penguin-boot： Spring Boot 启动模块，包含一些全局配置信息
+- penguin-backup： 系统数据备份备份模块，可选择独立部署
+- penguin-monitor： 系统监控服务端，监控Spring Boot服务模块
 
 #### 前端架构
 
@@ -69,6 +79,7 @@
 
 ##### 项目结构
 
+penguin-frontend
 - assets： 图标、字体、国际化信息等静态信息
 - components： 组件库，对常用组件进行封装
 - http： 后台交互模块，统一后台接口请求API
@@ -95,15 +106,32 @@
 
 3. 编译代码
 
-    找到 penguin-pom 工程的 pom.xml，执行 maven clean install 命令编译打包。
+    找到 penguin-monitor 工程的 pom.xml，执行 maven clean install 命令编译打包。
+    
+    找到 penguin-admin 工程的 pom.xml，执行 maven clean install 命令编译打包。
+
+    找到 penguin-backup 工程的 pom.xml，执行 maven clean install 命令编译打包。
 
 4. 导入数据库
 
-    新建 penguin 数据库，导入 penguin-pom 工程 doc 下的 SQL 脚本，导入初始化数据库。
+    新建 penguin 数据库，导入 penguin-admin 工程 doc 下的 SQL 脚本，导入初始化数据库。
+    修改 penguin-admin 下 application.yml 中的数据库连接和账号密码为自己的数据库配置。
 
 5. 启动系统
 
-    找到 penguin-boot 工程下的 PenguinApplication.java, 执行 Java 程序，启动项目。
+    找到 penguin-monitor 工程下的 PenguinMonitorApplication, 执行 Java 程序，启动项目。
+
+    找到 penguin-admin 工程下的 PenguinAdminApplication, 执行 Java 程序，启动项目。
+
+    找到 penguin-backup 工程下的 PenguinBackupApplication.java, 执行 Java 程序，启动项目。
+    
+    注意：监控服务器 monitor 要先启动，其他无所谓。
+
+6.修改配置
+
+    如果想自定义端口（默认是8090），可以修改 config/index.js 下的 port 属性。
+
+    后台服务器和备份服务器地址配置在 src/utils/global.js 文件中，按需修改。
 
 
 #### 前端安装

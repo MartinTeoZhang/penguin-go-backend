@@ -3,50 +3,26 @@
     <modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.ryzin</groupId>
-		<artifactId>penguin-pom</artifactId>
-		<version>${project.version}</version>
-		<relativePath>../penguin-pom</relativePath> <!-- lookup parent from repository -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
+	<groupId>com.ryzin</groupId>
 	<artifactId>penguin-common</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0</version>
 	<name>penguin-common</name>
 	<description>penguin-common</description>
-	<packaging>jar</packaging>
   
     <properties>
   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<mybatis.spring.version>1.3.2</mybatis.spring.version>
+		<java.version>11</java.version>
     </properties>
 
 	<dependencies>
-		<!-- fastjson -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-		</dependency>
-		
-		<!-- commons -->
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-		</dependency>
+
 	</dependencies>
 </project>

@@ -81,6 +81,7 @@ public class SysLogAspect {
 
 		// 获取request
 		HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+		
 		// 设置IP地址
 		sysLog.setIp(IPUtils.getIpAddr(request));
 

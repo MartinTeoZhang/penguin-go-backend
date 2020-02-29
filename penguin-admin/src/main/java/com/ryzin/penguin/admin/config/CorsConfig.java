@@ -1,4 +1,4 @@
-package com.ryzin.penguin.boot.config;
+package com.ryzin.penguin.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

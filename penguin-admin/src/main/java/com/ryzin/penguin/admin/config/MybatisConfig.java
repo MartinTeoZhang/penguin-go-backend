@@ -1,4 +1,4 @@
-package com.ryzin.penguin.boot.config;
+package com.ryzin.penguin.admin.config;
 
 import javax.sql.DataSource;
 
