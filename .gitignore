@@ -4,3 +4,8 @@
 *.lst
 *.war
 *.jar
+*.prefs
+penguin-producer/.classpath
+penguin-producer/.project
+penguin-producer2/.project
+penguin-producer2/.classpath

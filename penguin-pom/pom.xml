@@ -44,5 +44,8 @@
 		<module>../penguin-common</module>
 		<module>../penguin-core</module>
 		<module>../penguin-monitor</module>
+		<module>../penguin-consumer</module>
+		<module>../penguin-producer</module>
+		<module>../penguin-producer2</module>
 	</modules>
 </project>
