@@ -1,3 +1,4 @@
+com\ryzin\penguin\common\utils\IOUtils.class
 com\ryzin\penguin\common\utils\StringUtils.class
 com\ryzin\penguin\common\utils\DateTimeUtils.class
 com\ryzin\penguin\common\constants\HttpStatus.class
