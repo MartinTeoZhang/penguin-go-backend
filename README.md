@@ -126,7 +126,11 @@ Spring Coud 分支（dev，master）使用 Consul 作为注册中心，Consul 按照教程参考：
 
 3. 编译代码
 
+<<<<<<< Updated upstream
     找到 penguin-pom 工程的 pom.xml，执行 maven clean install 命令编译一键打包。
+=======
+    找到 penguin-pom 工程的 pom.xml，执行 maven clean install 命令编译一键打包。
+>>>>>>> Stashed changes
 
     一般来说不会有什么问题，如果还是编译不成功，可以按照优先级逐个编译试一试。
 
