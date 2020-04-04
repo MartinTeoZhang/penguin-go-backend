@@ -70,7 +70,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         SysUser user = sysUserService.findById(sysUserToken.getUserId());
         // 账号被锁定
         if(user.getStatus() == 0){
-            throw new LockedAccountException("账号已被锁定,请联系管理员");
+            throw new LockedAccountException("账号已被锁定，请联系管理员");
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, token, getName());
         return info;

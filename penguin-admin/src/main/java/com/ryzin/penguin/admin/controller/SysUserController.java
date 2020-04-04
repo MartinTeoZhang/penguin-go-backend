@@ -2,6 +2,7 @@ package com.ryzin.penguin.admin.controller;
 
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ public class SysUserController {
 	private SysUserService sysUserService;
 	
 	
+	@RequiresPermissions({"sys:user:add", "sys:user:edit"})
 	@PostMapping(value="/save")
 	public HttpResult save(@RequestBody SysUser record) {
 		SysUser user = sysUserService.findById(record.getId());
@@ -61,6 +63,7 @@ public class SysUserController {
 		return HttpResult.ok(sysUserService.save(record));
 	}
 
+	@RequiresPermissions("sys:user:delete")
 	@PostMapping(value="/delete")
 	public HttpResult delete(@RequestBody List<SysUser> records) {
 		for(SysUser record:records) {
@@ -72,21 +75,25 @@ public class SysUserController {
 		return HttpResult.ok(sysUserService.delete(records));
 	}
 
+	@RequiresPermissions("sys:user:view")
 	@GetMapping(value="/findByName")
 	public HttpResult findByUserName(@RequestParam String name) {
 		return HttpResult.ok(sysUserService.findByName(name));
 	}
 	
+	@RequiresPermissions("sys:user:view")
 	@GetMapping(value="/findPermissions")
 	public HttpResult findPermissions(@RequestParam String name) {
 		return HttpResult.ok(sysUserService.findPermissions(name));
 	}
 	
+	@RequiresPermissions("sys:user:view")
 	@GetMapping(value="/findUserRoles")
 	public HttpResult findUserRoles(@RequestParam Long userId) {
 		return HttpResult.ok(sysUserService.findUserRoles(userId));
 	}
 	
+	@RequiresPermissions("sys:user:view")
 	@PostMapping(value="/findPage")
 	public HttpResult findPage(@RequestBody PageRequest pageRequest) {
 		return HttpResult.ok(sysUserService.findPage(pageRequest));
@@ -95,6 +102,7 @@ public class SysUserController {
 	/**
 	 * 修改登录用户密码
 	 */
+	@RequiresPermissions("sys:user:edit")
 	@GetMapping("/updatePassword")
 	public HttpResult updatePassword(@RequestParam String password, @RequestParam String newPassword) {
 		SysUser user = ShiroUtils.getUser();

@@ -1,5 +1,6 @@
 package com.ryzin.penguin.admin.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ public class SysLogController {
 	private SysLogService sysLogService;
 
 	
+	@RequiresPermissions("sys:log:view")
 	@PostMapping(value="/findPage")
 	public HttpResult findPage(@RequestBody PageRequest pageRequest) {
 		return HttpResult.ok(sysLogService.findPage(pageRequest));
