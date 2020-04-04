@@ -47,5 +47,8 @@
 		<module>../penguin-consumer</module>
 		<module>../penguin-producer</module>
 		<module>../penguin-producer2</module>
+		<module>../penguin-config</module>
+		<module>../penguin-hystrix</module>
+		<module>../penguin-zuul</module>
 	</modules>
 </project>

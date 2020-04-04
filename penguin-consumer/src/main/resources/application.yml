@@ -3,12 +3,6 @@ server:
 spring:
   application:
     name: penguin-consumer
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-        serviceName: ${spring.application.name}	# 注册到consul的服务名称
   boot:
     admin:
       client:
@@ -21,7 +15,7 @@ spring:
     sampler:
       probability: 1 # 样本采集量，默认为0.1，为了测试这里修改为1，正式环境一般使用默认值
 # 开放健康检查接口
-management:
+management: # 开放refresh的相关接口
   endpoints:
     web:
       exposure:

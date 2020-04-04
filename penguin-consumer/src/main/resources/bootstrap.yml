@@ -1,0 +1,19 @@
+spring: # spring cloud相关的属性必须配置在bootstrap.yml中
+  cloud: # 因为config的相关配置会先于application.yml，而bootstrap.yml的加载也是先于application.yml文件的
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}	# 注册到consul的服务名称
+    config:
+      discovery:
+        enabled: true  # 开启服务发现
+        serviceId: penguin-config # 配置中心服务名称
+      name: spring-config  # 对应配置中心目录{application}部分
+      profile: dev  # 对应{profile}部分
+      label: master  # 对应git的分支，如果配置中心使用的是本地存储，则该参数无用
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
