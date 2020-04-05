@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONObject;
 import com.ryzin.penguin.admin.model.SysLog;
 import com.ryzin.penguin.admin.service.SysLogService;
-import com.ryzin.penguin.admin.util.HttpContextUtils;
+import com.ryzin.penguin.admin.util.HttpUtils;
 import com.ryzin.penguin.admin.util.IPUtils;
-import com.ryzin.penguin.admin.util.ShiroUtils;
+import com.ryzin.penguin.admin.util.SecurityUtils;
 
 
 /**
@@ -46,10 +46,7 @@ public class SysLogAspect {
 	}
 
 	private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
-		if(ShiroUtils.getUser() == null) {
-			return ;
-		}
-		String userName = ShiroUtils.getUser().getName();
+		String userName = SecurityUtils.getUsername();
 		if(joinPoint.getTarget() instanceof SysLogService) {
 			return ;
 		}
@@ -80,7 +77,7 @@ public class SysLogAspect {
 		}
 
 		// 获取request
-		HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+		HttpServletRequest request = HttpUtils.getHttpServletRequest();
 		
 		// 设置IP地址
 		sysLog.setIp(IPUtils.getIpAddr(request));

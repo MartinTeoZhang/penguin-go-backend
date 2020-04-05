@@ -134,25 +134,6 @@ CREATE TABLE `sys_role_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
 
 -- ------------------------------------------------
---  用户Token
--- ------------------------------------------------
---  Table structure for `sys_user_token`
--- ------------------------------------------------
-DROP TABLE IF EXISTS `sys_user_token`;
-CREATE TABLE `sys_user_token` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `user_id` bigint NOT NULL,
-  `token` varchar(100) NOT NULL COMMENT 'token',
-  `expire_time` datetime DEFAULT NULL COMMENT '过期时间',
-  `create_by` varchar(50) COMMENT '创建人',
-  `create_time` datetime COMMENT '创建时间',
-  `last_update_by` varchar(50) COMMENT '更新人',
-  `last_update_time` datetime COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户Token';
-
--- ------------------------------------------------
 --  系统日志
 -- ------------------------------------------------
 --  Table structure for `sys_log`
@@ -259,7 +240,7 @@ INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('3', '1', '机构管理', '/sys/dept', NULL, '1', 'el-icon-news', '2');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('4', '1', '角色管理', '/sys/role', NULL, '1', 'el-icon-view', '4');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('5', '1', '菜单管理', '/sys/menu', NULL, '1', 'el-icon-menu', '5');
-INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('6', '1', 'SQL监控', 'iframe:/druid/login.html', NULL, '1', 'el-icon-info', '6');
+INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('6', '1', 'SQL监控', 'http://139.196.87.48:8001/druid/login.html', NULL, '1', 'el-icon-info', '6');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('7', '1', '字典管理', '/sys/dict', NULL, '1', 'el-icon-edit-outline', '7');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('8', '1', '系统日志', '/sys/log', 'sys:log:view', '1', 'el-icon-info', '8');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('9', '2', '查看', NULL, 'sys:user:view', '2', NULL, '0');
@@ -288,7 +269,7 @@ INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('28', '0', '使用案例', NULL, NULL, '0', 'el-icon-picture-outline', '0');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('29', '28', '国际化', '/demo/i18n', NULL, '1', 'el-icon-edit', '1');
 INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('30', '28', '换皮肤', '/demo/theme', NULL, '1', 'el-icon-picture', '2');
-INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('35', '0', '接口文档', 'iframe:/swagger-ui.html', NULL, '1', 'el-icon-tickets', '10');
+INSERT INTO `sys_menu` (`id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('35', '0', '接口文档', 'http://139.196.87.48:8001/swagger-ui.html', NULL, '1', 'el-icon-tickets', '10');
 UNLOCK TABLES;
 -- --------------------------------------
 --  Records of `sys_role_menu`

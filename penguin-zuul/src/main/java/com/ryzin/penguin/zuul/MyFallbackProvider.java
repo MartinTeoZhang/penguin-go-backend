@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyFallbackProvider implements FallbackProvider {
     @Override
-    public String getRoute() { // 返回"kitty-consumer"，只针对consumer服务进行熔断。
+    public String getRoute() { // 返回"penguin-consumer"，只针对consumer服务进行熔断。
     	// 如果需要所有的路由服务都加熔断功能，需要在getRoute()方法上返回”*“的匹配符
         return "penguin-consumer";
     }
