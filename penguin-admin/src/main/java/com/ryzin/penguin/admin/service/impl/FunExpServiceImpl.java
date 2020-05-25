@@ -12,6 +12,7 @@ import com.ryzin.penguin.core.page.PageResult;
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.admin.dao.FunExpMapper;
 import com.ryzin.penguin.admin.service.FunExpService;
+import com.ryzin.penguin.core.page.ColumnFilter;
 
 
 @Service
@@ -48,7 +49,31 @@ public class FunExpServiceImpl implements FunExpService {
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
-		return MybatisPageHelper.findPage(pageRequest, funExpMapper);
+		String name = getColumnFilterValue(pageRequest, "name");
+		String status = getColumnFilterValue(pageRequest, "status");
+		if(name != null) {
+			return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByName", name);
+		}else{
+			if(status != null) {
+				Integer sta = Integer.valueOf(status);
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByStatus", sta);
+			}else{
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper);
+			}
+		}
 	}
-	
+
+	/**
+	 *  获取过滤字段的值
+	 * @param filterName
+	 * @return
+	 */
+	public String getColumnFilterValue(PageRequest pageRequest, String filterName) {
+		String value = null;
+		ColumnFilter columnFilter = pageRequest.getColumnFilter(filterName);
+		if(columnFilter != null) {
+			value = columnFilter.getValue();
+		}
+		return value;
+	}
 }
