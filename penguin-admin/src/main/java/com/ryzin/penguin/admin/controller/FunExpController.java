@@ -14,6 +14,8 @@ import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
 
 import com.ryzin.penguin.admin.model.FunExp;
+import com.ryzin.penguin.admin.model.FunExpUser;
+
 import com.ryzin.penguin.admin.service.FunExpService;
 
 
@@ -23,7 +25,7 @@ public class FunExpController {
 
 	@Autowired
 	private FunExpService funExpService;
-
+	
 	/**
 	 * 保存
 	 * @param record
@@ -63,4 +65,34 @@ public class FunExpController {
 	public HttpResult findById(@RequestParam Long id) {
 		return HttpResult.ok(funExpService.findById(id));
 	}
+	
+	/**
+	 * 查询实验用户集合
+     * @param expId
+	 * @return
+	 */
+	@GetMapping(value="/findExpUsers")
+	public HttpResult findExpUsers(@RequestParam Long expId) {
+		return HttpResult.ok(funExpService.findExpUsers(expId));
+	}
+	
+	/**
+	 * 保存实验用户
+	 * @param records
+	 * @return
+	 */
+	@PostMapping(value="/saveExpUser")
+	public HttpResult saveExpUser(@RequestBody FunExpUser record) {
+		return HttpResult.ok(funExpService.saveExpUser(record));
+	}
+
+    /**
+     * 查询实验的报名人数
+     * @param expId
+     * @return
+     */
+    @GetMapping(value="/getExpUserCount")
+    public HttpResult getExpUserCount(@RequestParam Long expId) {
+        return HttpResult.ok(funExpService.getExpUserCount(expId));
+    }
 }

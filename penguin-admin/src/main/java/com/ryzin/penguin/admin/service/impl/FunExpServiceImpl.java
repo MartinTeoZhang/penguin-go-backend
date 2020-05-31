@@ -4,15 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
+import com.ryzin.penguin.core.page.ColumnFilter;
 
 import com.ryzin.penguin.admin.model.FunExp;
+import com.ryzin.penguin.admin.model.FunExpUser;
+
 import com.ryzin.penguin.admin.dao.FunExpMapper;
+import com.ryzin.penguin.admin.dao.FunExpUserMapper;
+import com.ryzin.penguin.admin.dao.SysUserMapper;
+
 import com.ryzin.penguin.admin.service.FunExpService;
-import com.ryzin.penguin.core.page.ColumnFilter;
 
 
 @Service
@@ -20,7 +26,12 @@ public class FunExpServiceImpl implements FunExpService {
 
 	@Autowired
 	private FunExpMapper funExpMapper;
-
+	@Autowired
+	private FunExpUserMapper funExpUserMapper;
+	@Autowired
+	private SysUserMapper sysUserMapper;
+	
+	
 	@Override
 	public int save(FunExp record) {
 		if(record.getId() == null || record.getId() == 0) {
@@ -62,7 +73,7 @@ public class FunExpServiceImpl implements FunExpService {
 			}
 		}
 	}
-
+	
 	/**
 	 *  获取过滤字段的值
 	 * @param filterName
@@ -75,5 +86,24 @@ public class FunExpServiceImpl implements FunExpService {
 			value = columnFilter.getValue();
 		}
 		return value;
+	}
+	
+	@Override
+	public List<FunExpUser> findExpUsers(Long expId) {
+		return funExpUserMapper.findExpUsers(expId);
+	}
+	
+	@Transactional
+	@Override
+	public int saveExpUser(FunExpUser record) {
+		if(record.getId() == null || record.getId() == 0) {
+			return funExpUserMapper.insertSelective(record);
+		}
+		return funExpUserMapper.updateByPrimaryKeySelective(record);
+	}
+
+	@Override
+	public int getExpUserCount(Long expId) {
+		return funExpUserMapper.getExpUserCount(expId);
 	}
 }
