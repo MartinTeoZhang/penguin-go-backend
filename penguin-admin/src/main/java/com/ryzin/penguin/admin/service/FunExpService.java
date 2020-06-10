@@ -5,6 +5,7 @@ import java.util.List;
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.core.service.CurdService;
 import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.FunUserExp;
 
 
 public interface FunExpService extends CurdService<FunExp> {
@@ -17,12 +18,19 @@ public interface FunExpService extends CurdService<FunExp> {
 	List<FunExpUser> findExpUsers(Long expId);
 	
 	/**
-	 * 保存实验用户
+	 * 保存实验被试
 	 * @param records
 	 * @return
 	 */
 	int saveExpUser(FunExpUser record);
-
+	
+	/**
+	 * 保存主试实验
+	 * @param records
+	 * @return
+	 */
+	int saveUserExp(FunUserExp record);
+	
 	/**
 	 * 查询实验的报名人数
 	 * @param expId

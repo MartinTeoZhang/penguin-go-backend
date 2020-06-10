@@ -13,9 +13,11 @@ import com.ryzin.penguin.core.page.ColumnFilter;
 
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.admin.model.FunExpUser;
-
+import com.ryzin.penguin.admin.model.FunUserExp;
+import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.dao.FunExpMapper;
 import com.ryzin.penguin.admin.dao.FunExpUserMapper;
+import com.ryzin.penguin.admin.dao.FunUserExpMapper;
 import com.ryzin.penguin.admin.dao.SysUserMapper;
 
 import com.ryzin.penguin.admin.service.FunExpService;
@@ -29,20 +31,42 @@ public class FunExpServiceImpl implements FunExpService {
 	@Autowired
 	private FunExpUserMapper funExpUserMapper;
 	@Autowired
+	private FunUserExpMapper funUserExpMapper;
+	@Autowired
 	private SysUserMapper sysUserMapper;
 	
-	
+	@Transactional
 	@Override
 	public int save(FunExp record) {
+		Long expId = null;
 		if(record.getId() == null || record.getId() == 0) {
-			return funExpMapper.insert(record);
+			funExpMapper.insert(record);
+			expId = funExpMapper.getLastExpId();
+		} else {
+			expId = record.getId();
+			funExpMapper.update(record);
 		}
-		return funExpMapper.update(record);
+		
+		// 根据userName获取userId
+		SysUser sysUser = sysUserMapper.findByName(record.getCreateBy());
+		FunUserExp funUserExp = new FunUserExp();
+		// 更新主试实验关系表
+		if(sysUser != null) {
+			funUserExp.setUserId(sysUser.getId());
+		} 
+		else {
+			funUserExpMapper.deleteByUserName(record.getCreateBy());
+		}
+		funUserExp.setExpId(expId);
+		funUserExpMapper.insert(funUserExp);
+		return 1;
 	}
 
 	@Override
 	public int delete(FunExp record) {
-		return funExpMapper.delete(record.getId());
+		funExpMapper.delete(record.getId());
+		funUserExpMapper.deleteByExpId(record.getId());
+		return 1;
 	}
 
 	@Override
@@ -95,13 +119,22 @@ public class FunExpServiceImpl implements FunExpService {
 	
 	@Transactional
 	@Override
-	public int saveExpUser(FunExpUser record) {
+	public int saveExpUser(FunExpUser record) {  // 保存实验被试记录
 		if(record.getId() == null || record.getId() == 0) {
 			return funExpUserMapper.insertSelective(record);
 		}
 		return funExpUserMapper.updateByPrimaryKeySelective(record);
 	}
-
+	
+	@Transactional
+	@Override
+	public int saveUserExp(FunUserExp record) {  // 保存主试实验记录
+		if(record.getId() == null || record.getId() == 0) {
+			return funUserExpMapper.insert(record);
+		}
+		return funUserExpMapper.update(record);
+	}
+	
 	@Override
 	public int getExpUserCount(Long expId) {
 		return funExpUserMapper.getExpUserCount(expId);

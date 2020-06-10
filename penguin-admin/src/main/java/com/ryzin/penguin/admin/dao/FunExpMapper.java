@@ -58,4 +58,10 @@ public interface FunExpMapper {
 	 */    
 	List<FunExp> findPageByStatus(@Param(value="status") Integer status);
 	
+	/**
+	 * 查询最后一条记录的Id
+	 * @param status
+	 * @return
+	 */   
+	Long getLastExpId();
 }
