@@ -6,15 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ryzin.penguin.admin.model.FunExp;
 
-/**
- * ---------------------------
- *  (FunExpMapper)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-04-16 09:19:23
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+
 public interface FunExpMapper {
 
 	/**
@@ -22,7 +14,7 @@ public interface FunExpMapper {
 	 * @param record
 	 * @return
 	 */
-    int add(FunExp record);
+    int insert(FunExp record);
 
     /**
      * 删除

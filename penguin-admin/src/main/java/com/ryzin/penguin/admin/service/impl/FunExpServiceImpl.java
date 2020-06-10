@@ -35,7 +35,7 @@ public class FunExpServiceImpl implements FunExpService {
 	@Override
 	public int save(FunExp record) {
 		if(record.getId() == null || record.getId() == 0) {
-			return funExpMapper.add(record);
+			return funExpMapper.insert(record);
 		}
 		return funExpMapper.update(record);
 	}
