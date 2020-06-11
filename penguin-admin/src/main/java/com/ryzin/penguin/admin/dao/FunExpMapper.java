@@ -5,15 +5,10 @@ import java.util.List;
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.core.page.PageResult;
 
-/**
- * ---------------------------
- *  (FunExpMapper)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+
+import org.apache.ibatis.annotations.Param;
+
+
 public interface FunExpMapper {
 
 	/**
@@ -21,7 +16,7 @@ public interface FunExpMapper {
 	 * @param record
 	 * @return
 	 */
-    int add(FunExp record);
+    int insert(FunExp record);
 
     /**
      * 删除
@@ -65,4 +60,25 @@ public interface FunExpMapper {
      */    
     List<FunExp> findPageByExperimenterUserId(Long user_id);
     
+	
+    /**
+     * 根据实验名称查询
+     * @param name
+     * @return
+     */    
+    List<FunExp> findPageByName(@Param(value="name") String name);
+
+	/**
+	 * 根据实验状态查询
+	 * @param status
+	 * @return
+	 */    
+	List<FunExp> findPageByStatus(@Param(value="status") Integer status);
+	
+	/**
+	 * 查询最后一条记录的Id
+	 * @param status
+	 * @return
+	 */   
+	Long getLastExpId();
 }

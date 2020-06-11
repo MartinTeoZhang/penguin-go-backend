@@ -25,132 +25,20 @@
 	<result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   
-  <insert id="add" parameterType="com.ryzin.penguin.admin.model.FunExp">
-    insert into fun_exp
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="types != null">
-        types,
-      </if>
-      <if test="payment != null">
-        payment,
-      </if>
-      <if test="contact != null">
-        contact,
-      </if>
-      <if test="peopleNum != null">
-        people_num,
-      </if>
-      <if test="location != null">
-        location,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="time != null">
-        time,
-      </if>
-      <if test="duration != null">
-        duration,
-      </if>
-      <if test="requirements != null">
-        requirements,
-      </if>
-      <if test="preferences != null">
-        preferences,
-      </if>
-      <if test="questionnaireId != null">
-        questionnaire_id,
-      </if>
-      <if test="fileList != null">
-        file_list,
-      </if>
-      <if test="note != null">
-        note,
-      </if>
-      <if test="createBy != null">
-        create_by,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="lastUpdateBy != null">
-        last_update_by,
-      </if>
-      <if test="lastUpdateTime != null">
-        last_update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="types != null">
-        #{types,jdbcType=VARCHAR},
-      </if>
-      <if test="payment != null">
-        #{payment,jdbcType=VARCHAR},
-      </if>
-      <if test="contact != null">
-        #{contact,jdbcType=VARCHAR},
-      </if>
-      <if test="peopleNum != null">
-        #{peopleNum,jdbcType=INTEGER},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null">
-        #{time,jdbcType=VARCHAR},
-      </if>
-      <if test="duration != null">
-        #{duration,jdbcType=INTEGER},
-      </if>
-      <if test="requirements != null">
-        #{requirements,jdbcType=VARCHAR},
-      </if>
-      <if test="preferences != null">
-        #{preferences,jdbcType=VARCHAR},
-      </if>
-      <if test="questionnaireId != null">
-        #{questionnaireId,jdbcType=VARCHAR},
-      </if>
-      <if test="fileList != null">
-        #{fileList,jdbcType=VARCHAR},
-      </if>
-      <if test="note != null">
-        #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdateBy != null">
-        #{lastUpdateBy,jdbcType=VARCHAR},
-      </if>
-      <if test="lastUpdateTime != null">
-        #{lastUpdateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
+  <insert id="insert" parameterType="com.ryzin.penguin.admin.model.FunExp">
+  	insert into fun_exp (id, name, status, 
+ 	  types, payment, contact,
+ 	  people_num, location, content,
+ 	  time, duration, requirements,
+ 	  preferences, questionnaire_id, file_list, note,
+      create_by, create_time, last_update_by, last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
+       #{types,jdbcType=VARCHAR}, #{payment, jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+       #{peopleNum,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+       #{time,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, #{requirements,jdbcType=VARCHAR}, 
+       #{preferences,jdbcType=VARCHAR}, #{questionnaireId,jdbcType=VARCHAR}, #{fileList,jdbcType=VARCHAR},
+       #{note,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+       #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
 
   <delete id="delete" parameterType="java.lang.Long">
@@ -248,4 +136,21 @@
     select * from fun_exp
   </select>
   
+  <select id="findPageByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    select * from fun_exp
+    where name like #{pattern}
+  </select>
+
+  <select id="findPageByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.status + '%'" />
+    select * from fun_exp
+    where status like #{pattern}
+  </select>
+  
+  <select id="getLastExpId" resultType="java.lang.Long">
+        select id from fun_exp
+        order by id
+        desc limit 0,1
+  </select>
 </mapper>

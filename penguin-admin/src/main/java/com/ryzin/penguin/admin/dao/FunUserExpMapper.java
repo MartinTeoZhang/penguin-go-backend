@@ -5,15 +5,10 @@ import java.util.List;
 import com.ryzin.penguin.admin.model.FunExpUser;
 import com.ryzin.penguin.admin.model.FunUserExp;
 
-/**
- * ---------------------------
- *  (FunUserExpMapper)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+
+import org.apache.ibatis.annotations.Param;
+
+
 public interface FunUserExpMapper {
 
 	/**
@@ -21,7 +16,7 @@ public interface FunUserExpMapper {
 	 * @param record
 	 * @return
 	 */
-    int add(FunUserExp record);
+    int insert(FunUserExp record);
 
     /**
      * 删除
@@ -56,6 +51,9 @@ public interface FunUserExpMapper {
      * @param id
      * @return
      */    
-    List<FunExpUser> findByUserId(long user_id);
+    List<FunExpUser> findByUserId(@Param(value="userId") Long userId);
     
+    int deleteByUserName(@Param(value="userName") String userName);
+    
+    int deleteByExpId(@Param(value="expId") Long expId);
 }

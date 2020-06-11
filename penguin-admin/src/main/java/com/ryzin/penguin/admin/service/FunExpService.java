@@ -1,22 +1,41 @@
 package com.ryzin.penguin.admin.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.ryzin.penguin.admin.model.FunExp;
-import com.ryzin.penguin.admin.model.FunExpUser;
 import com.ryzin.penguin.core.service.CurdService;
+import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.FunUserExp;
 
-/**
- * ---------------------------
- *  (FunExpService)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+
 public interface FunExpService extends CurdService<FunExp> {
-
-
+	
+	/**
+	 * 查询实验用户集合
+	 * @param expId
+	 * @return
+	 */
+	List<FunExpUser> findExpUsers(Long expId);
+	
+	/**
+	 * 保存实验被试
+	 * @param records
+	 * @return
+	 */
+	int saveExpUser(FunExpUser record);
+	
+	/**
+	 * 保存主试实验
+	 * @param records
+	 * @return
+	 */
+	int saveUserExp(FunUserExp record);
+	
+	/**
+	 * 查询实验的报名人数
+	 * @param expId
+	 * @return
+	 */
+	int getExpUserCount(Long expId);
+	
 }
