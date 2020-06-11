@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 11/06/2020 00:22:04
+ Date: 11/06/2020 21:36:00
 */
 
 SET NAMES utf8mb4;
@@ -117,7 +117,7 @@ CREATE TABLE `fun_user_exp`  (
 -- Records of fun_user_exp
 -- ----------------------------
 INSERT INTO `fun_user_exp` VALUES (1, 1, 0, 'admin', '2020-06-10 23:19:58', NULL, NULL);
-INSERT INTO `fun_user_exp` VALUES (2, 1, 0, 'admin', '2020-06-10 23:21:22', NULL, NULL);
+INSERT INTO `fun_user_exp` VALUES (2, 1, 17, 'admin', '2020-06-10 23:21:22', NULL, NULL);
 INSERT INTO `fun_user_exp` VALUES (3, 1, 18, 'admin', '2020-06-10 23:57:46', NULL, NULL);
 
 -- ----------------------------
@@ -189,11 +189,72 @@ CREATE TABLE `sys_log`  (
   `last_update_by` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
   `last_update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4322 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_log
 -- ----------------------------
+INSERT INTO `sys_log` VALUES (1, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 236, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (2, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 2, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (3, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 53, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (4, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 60, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (5, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 61, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:01:01', NULL, NULL);
+INSERT INTO `sys_log` VALUES (6, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 11, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:01:01', NULL, NULL);
+INSERT INTO `sys_log` VALUES (7, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 24, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:01:01', NULL, NULL);
+INSERT INTO `sys_log` VALUES (8, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', 'null', 12, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:01:16', NULL, NULL);
+INSERT INTO `sys_log` VALUES (9, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.save()', '{\"children\":[],\"createBy\":\"admin\",\"createTime\":1586445215000,\"delFlag\":0,\"icon\":\"fa fa-user-circle fa-lg fa-fw\",\"id\":53,\"lastUpdateBy\":\"admin\",\"lastUpdateTime\":1591851722454,\"level\":0,\"name\":\"账户管理\",\"o...', 31, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:03', NULL, NULL);
+INSERT INTO `sys_log` VALUES (10, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', 'null', 14, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:03', NULL, NULL);
+INSERT INTO `sys_log` VALUES (11, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', 'null', 9, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:08', NULL, NULL);
+INSERT INTO `sys_log` VALUES (12, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 15, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:14', NULL, NULL);
+INSERT INTO `sys_log` VALUES (13, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 9, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:14', NULL, NULL);
+INSERT INTO `sys_log` VALUES (14, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 15, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:14', NULL, NULL);
+INSERT INTO `sys_log` VALUES (15, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.getInfoByName()', '\"admin\"', 25, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:15', NULL, NULL);
+INSERT INTO `sys_log` VALUES (16, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"name\":{\"name\":\"name\",\"value\":\"admin\"}},\"pageNum\":1,\"pageSize\":10}', 310, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:16', NULL, NULL);
+INSERT INTO `sys_log` VALUES (17, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"name\":{\"name\":\"name\",\"value\":\"admin\"}},\"pageNum\":2,\"pageSize\":10}', 27, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:02:29', NULL, NULL);
+INSERT INTO `sys_log` VALUES (18, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findById()', '1', 15, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:05:12', NULL, NULL);
+INSERT INTO `sys_log` VALUES (19, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findById()', '1', 5, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 13:05:26', NULL, NULL);
+INSERT INTO `sys_log` VALUES (20, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 225, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (21, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 4, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (22, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 43, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (23, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 47, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (24, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 147, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:42:40', NULL, NULL);
+INSERT INTO `sys_log` VALUES (25, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 93, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:42:40', NULL, NULL);
+INSERT INTO `sys_log` VALUES (26, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 109, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:42:40', NULL, NULL);
+INSERT INTO `sys_log` VALUES (27, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 16, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:10', NULL, NULL);
+INSERT INTO `sys_log` VALUES (28, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 8, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:10', NULL, NULL);
+INSERT INTO `sys_log` VALUES (29, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 8, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:10', NULL, NULL);
+INSERT INTO `sys_log` VALUES (30, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 15, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:10', NULL, NULL);
+INSERT INTO `sys_log` VALUES (31, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 6, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:11', NULL, NULL);
+INSERT INTO `sys_log` VALUES (32, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 15, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:11', NULL, NULL);
+INSERT INTO `sys_log` VALUES (33, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"status\":{\"name\":\"status\",\"value\":\"2\"}},\"pageNum\":1,\"pageSize\":10}', 164, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:11', NULL, NULL);
+INSERT INTO `sys_log` VALUES (34, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"label\":{\"name\":\"label\"}},\"pageNum\":1,\"pageSize\":10}', 14, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:44:18', NULL, NULL);
+INSERT INTO `sys_log` VALUES (35, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 9, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:19', NULL, NULL);
+INSERT INTO `sys_log` VALUES (36, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 6, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:19', NULL, NULL);
+INSERT INTO `sys_log` VALUES (37, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 11, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:19', NULL, NULL);
+INSERT INTO `sys_log` VALUES (38, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 23, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:19', NULL, NULL);
+INSERT INTO `sys_log` VALUES (39, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 25, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:20', NULL, NULL);
+INSERT INTO `sys_log` VALUES (40, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 31, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:20', NULL, NULL);
+INSERT INTO `sys_log` VALUES (41, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"label\":{\"name\":\"label\"}},\"pageNum\":1,\"pageSize\":10}', 9, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:20', NULL, NULL);
+INSERT INTO `sys_log` VALUES (42, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"status\":{\"name\":\"status\",\"value\":\"2\"}},\"pageNum\":1,\"pageSize\":10}', 7, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:55', NULL, NULL);
+INSERT INTO `sys_log` VALUES (43, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '1', 13, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:55', NULL, NULL);
+INSERT INTO `sys_log` VALUES (44, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '2', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (45, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '3', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (46, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '4', 3, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (47, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '5', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (48, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '6', 3, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (49, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '7', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (50, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '8', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (51, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '9', 2, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (52, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.getExpUserCount()', '10', 4, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:45:56', NULL, NULL);
+INSERT INTO `sys_log` VALUES (53, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"label\":{\"name\":\"label\"}},\"pageNum\":1,\"pageSize\":10}', 8, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 16:46:02', NULL, NULL);
+INSERT INTO `sys_log` VALUES (54, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 14, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (55, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findByName()', '\"admin\"', 2, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (56, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 4, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (57, NULL, NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 6, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_log` VALUES (58, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findTree()', '\"admin\"', 6, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 17:06:03', NULL, NULL);
+INSERT INTO `sys_log` VALUES (59, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysMenuServiceImpl.findByUser()', '\"admin\"', 4, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 17:06:03', NULL, NULL);
+INSERT INTO `sys_log` VALUES (60, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.SysUserServiceImpl.findPermissions()', '\"admin\"', 8, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 17:06:03', NULL, NULL);
+INSERT INTO `sys_log` VALUES (61, 'admin', NULL, 'com.ryzin.penguin.admin.service.impl.FunExpServiceImpl.findPage()', '{\"columnFilters\":{\"label\":{\"name\":\"label\"}},\"pageNum\":1,\"pageSize\":10}', 7, '0:0:0:0:0:0:0:1', 'admin', '2020-06-11 17:06:19', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -258,7 +319,7 @@ INSERT INTO `sys_menu` VALUES (48, '实验管理', 47, '/CustomFunction/Experime
 INSERT INTO `sys_menu` VALUES (50, '被试实验管理', 0, '', '', 1, 'fa fa-object-ungroup fa-lg fa-fw', 8, 'admin', '2020-04-09 23:11:42', NULL, NULL, 0);
 INSERT INTO `sys_menu` VALUES (51, '被试管理', 50, '', '', 1, 'fa fa-users fa-lg fa-fw', 1, 'admin', '2020-04-09 23:12:24', NULL, NULL, 0);
 INSERT INTO `sys_menu` VALUES (52, '实验管理', 50, '', '', 1, 'fa fa-list-alt fa-lg fa-fw', 2, 'admin', '2020-04-09 23:13:04', NULL, NULL, 0);
-INSERT INTO `sys_menu` VALUES (53, '账户管理', 0, '', '', 1, 'fa fa-user-circle fa-lg fa-fw', 9, 'admin', '2020-04-09 23:13:35', NULL, NULL, 0);
+INSERT INTO `sys_menu` VALUES (53, '账户管理', 0, '/Profile/Profile', '', 1, 'fa fa-user-circle fa-lg fa-fw', 9, 'admin', '2020-04-09 23:13:35', 'admin', '2020-06-11 13:02:02', 0);
 INSERT INTO `sys_menu` VALUES (54, '被试管理', 47, '', 'fun:subject:peomng', 1, 'fa fa-users fa-lg fa-fw', 0, 'admin', '2020-06-10 15:43:24', 'admin', '2020-06-10 15:45:16', 0);
 INSERT INTO `sys_menu` VALUES (55, '添加实验', 48, '', 'fun:subject:addexp', 2, '', 0, 'admin', '2020-06-10 15:44:35', NULL, NULL, 0);
 INSERT INTO `sys_menu` VALUES (56, '修改实验', 48, '', 'fun:subject:editexp', 2, '', 0, 'admin', '2020-06-10 15:47:23', NULL, NULL, 0);
