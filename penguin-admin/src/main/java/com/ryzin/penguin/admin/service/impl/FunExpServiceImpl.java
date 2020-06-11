@@ -15,11 +15,12 @@ import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.admin.model.FunExpUser;
 import com.ryzin.penguin.admin.model.FunUserExp;
 import com.ryzin.penguin.admin.model.SysUser;
+import com.ryzin.penguin.admin.model.SysUserRole;
 import com.ryzin.penguin.admin.dao.FunExpMapper;
 import com.ryzin.penguin.admin.dao.FunExpUserMapper;
 import com.ryzin.penguin.admin.dao.FunUserExpMapper;
 import com.ryzin.penguin.admin.dao.SysUserMapper;
-
+import com.ryzin.penguin.admin.dao.SysUserRoleMapper;
 import com.ryzin.penguin.admin.service.FunExpService;
 
 
@@ -34,6 +35,8 @@ public class FunExpServiceImpl implements FunExpService {
 	private FunUserExpMapper funUserExpMapper;
 	@Autowired
 	private SysUserMapper sysUserMapper;
+	@Autowired
+	private SysUserRoleMapper sysUserRoleMapper;
 	
 	@Transactional
 	@Override

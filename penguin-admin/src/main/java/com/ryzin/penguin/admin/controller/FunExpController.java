@@ -31,7 +31,7 @@ import com.ryzin.penguin.admin.service.SysUserService;
 
 
 @RestController
-@RequestMapping("exp")
+@RequestMapping("funExp")
 public class FunExpController {
 
 	@Autowired

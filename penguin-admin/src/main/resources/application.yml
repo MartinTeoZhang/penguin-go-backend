@@ -14,18 +14,18 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/penguin?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&serverTimezone=Hongkong   
+      url: jdbc:mysql://localhost:3306/penguin?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false  
 #           jdbc.username=root
 #           jdbc.password=123456
       username: root
-      password: 
-      filters: stat,wall,log4j,config # 閰嶇疆鐩戞帶缁熻鎷︽埅鐨刦ilters锛屽幓鎺夊悗鐩戞帶鐣岄潰SQL鏃犳硶杩涜缁熻锛屸�檞all鈥欑敤浜庨槻鐏
-      max-active: 100 # 鏈�澶ц繛鎺ユ爲
-      initial-size: 1 # 鍒濆鍖栧ぇ灏� 
-      max-wait: 60000 # 鑾峰彇杩炴帴绛夊緟瓒呮椂鏃堕棿
-      min-idle: 1 # 鏈�灏忚繛鎺ユ暟
-      time-between-eviction-runs-millis: 60000 # 闂撮殧澶氫箙鎵嶈繘琛屼竴娆℃娴嬶紝妫�娴嬮渶瑕佸叧闂殑绌洪棽杩炴帴锛屽崟浣嶆槸姣 
-      min-evictable-idle-time-millis: 300000 #  涓�涓繛鎺ュ湪姹犱腑鏈�灏忕敓瀛樼殑鏃堕棿锛屽崟浣嶆槸姣 
+      password: 123456
+      filters: stat,wall,log4j,config # 配置监控统计拦截的filters，去掉后监控界面SQL无法进行统计，’wall’用于防火墙
+      max-active: 100 # 最大连接树
+      initial-size: 1 # 初始化大小 
+      max-wait: 60000 # 获取连接等待超时时间
+      min-idle: 1 # 最小连接数
+      time-between-eviction-runs-millis: 60000 # 间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 
+      min-evictable-idle-time-millis: 300000 #  一个连接在池中最小生存的时间，单位是毫秒 
       validation-query: select 'x'
       test-while-idle: true
       test-on-borrow: false
@@ -41,13 +41,13 @@ spring:
       host: localhost
       port: 8500
       discovery:
-        serviceName: ${spring.application.name} # 娉ㄥ唽鍒癱onsul鐨勬湇鍔″悕绉�
+        serviceName: ${spring.application.name} # 注册到consul的服务名称
   boot:
     admin:
       client:
         url: "http://localhost:8000"
         
-# 寮�鏀惧仴搴锋鏌ユ帴鍙�
+# 开放健康检查接口
 management:
   endpoints:
     web:

@@ -13,15 +13,7 @@ import com.ryzin.penguin.admin.model.FunUserExp;
 import com.ryzin.penguin.admin.dao.FunUserExpMapper;
 import com.ryzin.penguin.admin.service.FunUserExpService;
 
-/**
- * ---------------------------
- *  (FunUserExpServiceImpl)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-03 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+
 @Service
 public class FunUserExpServiceImpl implements FunUserExpService {
 
@@ -31,7 +23,7 @@ public class FunUserExpServiceImpl implements FunUserExpService {
 	@Override
 	public int save(FunUserExp record) {
 		if(record.getId() == null || record.getId() == 0) {
-			return funUserExpMapper.add(record);
+			return funUserExpMapper.insert(record);
 		}
 		return funUserExpMapper.update(record);
 	}
