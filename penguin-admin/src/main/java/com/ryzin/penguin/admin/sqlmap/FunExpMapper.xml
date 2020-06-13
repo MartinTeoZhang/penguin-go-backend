@@ -124,6 +124,15 @@
     (select exp_id from fun_exp_user where user_id = #{user_id, jdbcType=BIGINT})
   </select>
   
+  <select id="findPageBySubjectUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+  	select * from 
+  	(select * from fun_exp
+    where id in 
+    (select exp_id from fun_exp_user where user_id = #{patternUserId}))
+    where name like #{patternExpName}
+  </select>
   
   <select id="findPageByExperimenterUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select * from fun_exp
@@ -131,7 +140,16 @@
     (select exp_id from fun_user_exp where user_id = #{user_id, jdbcType=BIGINT})
   </select>
   
-  
+  <select id="findPageByExperimenterUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+  	select * from 
+  	(select * from fun_exp
+    where id in 
+    (select exp_id from fun_user_exp where user_id = #{patternUserId}))
+    where name like #{patternExpName}
+  </select>
+
   <select id="findPage" resultMap="BaseResultMap">
     select * from fun_exp
   </select>

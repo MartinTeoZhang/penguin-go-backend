@@ -84,30 +84,44 @@ public class FunExpServiceImpl implements FunExpService {
 	public FunExp findById(Long id) {
 		return funExpMapper.findById(id);
 	}
+	
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
 		PageResult pageResult = null;
-		String name = getColumnFilterValue(pageRequest, "name");
-		if(name != null && name.length() > 0) {
-			System.out.println("------------1,name="+name);
-			SysUser user = sysUserMapper.findByName(name);
+		String userName = getColumnFilterValue(pageRequest, "userName");
+		String expName = getColumnFilterValue(pageRequest, "expName");
+		if(userName != null && userName.length() > 0) {
+			System.out.println("------------1,name="+userName);
+			SysUser user = sysUserMapper.findByName(userName);
 			List<SysUserRole> roles = sysUserRoleMapper.findUserRoles(user.getId());
 			//角色为被试
 			if(roles.get(0).getRoleId() == 9) {
 				System.out.println("------------2");
-				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserId", user.getId());
+				if(expName != null)
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserIdAndExpName", user.getId(), expName);
+				else
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserId", user.getId());
 			}else if(roles.get(0).getRoleId() == 10) {
 				System.out.println("------------3");
 				//角色为主试
-				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByExperimenterUserId", user.getId());
+				if(expName != null)
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByExperimenterUserIdAndExpName", user.getId(), expName);
+				else
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByExperimenterUserId", user.getId());
 			}else {
 				System.out.println("------------4");
-				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper);
+				if(expName != null)
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByName", expName);
+				else
+					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper);
 			}
 		}else {
 			System.out.println("------------5");
-			pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper);
+			if(expName != null)
+				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByName", expName);
+			else
+				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper);
 		}
 		return pageResult;
 	}
@@ -154,4 +168,5 @@ public class FunExpServiceImpl implements FunExpService {
 	public int getExpUserCount(Long expId) {
 		return funExpUserMapper.getExpUserCount(expId);
 	}
+
 }
