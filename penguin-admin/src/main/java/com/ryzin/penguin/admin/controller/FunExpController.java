@@ -66,6 +66,16 @@ public class FunExpController {
 	public HttpResult delete(@RequestBody List<FunExp> records) {
 		return HttpResult.ok(funExpService.delete(records));
 	}
+	
+	/**
+     * 删除
+     * @param records
+     * @return
+     */
+	@PostMapping(value="/deletePeo")
+	public HttpResult deletePeo(@RequestBody List<FunExpUser> records) {
+		return HttpResult.ok(funExpService.deletePeo(records));
+	}
 
     /**
      * 基础分页查询
@@ -179,6 +189,16 @@ public class FunExpController {
 	@GetMapping(value="/findExpUsers")
 	public HttpResult findExpUsers(@RequestParam Long expId) {
 		return HttpResult.ok(funExpService.findExpUsers(expId));
+	}
+	
+	/**
+	 * 查询实验用户集合
+     * @param
+	 * @return
+	 */
+	@PostMapping(value="/findExpUsersPage")
+	public HttpResult findExpUsersPage(@RequestBody PageRequest pageRequest) {
+		return HttpResult.ok(funExpService.findExpUsersPage(pageRequest));
 	}
 	
 	/**

@@ -69,9 +69,10 @@ public class FunExpServiceImpl implements FunExpService {
 	public int delete(FunExp record) {
 		funExpMapper.delete(record.getId());
 		funUserExpMapper.deleteByExpId(record.getId());
+		funExpUserMapper.deleteByExpId(record.getId());
 		return 1;
 	}
-
+	
 	@Override
 	public int delete(List<FunExp> records) {
 		for(FunExp record:records) {
@@ -79,12 +80,19 @@ public class FunExpServiceImpl implements FunExpService {
 		}
 		return 1;
 	}
-
+	
+	@Override
+	public int deletePeo(List<FunExpUser> records) {
+		for(FunExpUser record:records) {
+			funExpUserMapper.delete(record.getId());
+		}
+		return 1;
+	}
+	
 	@Override
 	public FunExp findById(Long id) {
 		return funExpMapper.findById(id);
 	}
-	
 
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
@@ -141,9 +149,27 @@ public class FunExpServiceImpl implements FunExpService {
 		return value;
 	}
 	
+	/**
+	 * 根据实验id获取被试列表
+	 * @author gyc
+	 */
 	@Override
 	public List<FunExpUser> findExpUsers(Long expId) {
 		return funExpUserMapper.findExpUsers(expId);
+	}
+	
+	/**
+	 * 根据实验id获取被试列表
+	 * @author Ryzin
+	 */
+	@Override
+	public PageResult findExpUsersPage(PageRequest pageRequest) {
+		PageResult pageResult = null;
+		String id = getColumnFilterValue(pageRequest, "expId");
+		Long expId = Long.parseLong(id);
+		System.out.println("实验id：" + expId);
+		pageResult = MybatisPageHelper.findPage(pageRequest, sysUserMapper, "findExpUsersPageByExpId", expId);
+		return pageResult;
 	}
 	
 	@Transactional

@@ -3,6 +3,8 @@ package com.ryzin.penguin.admin.service;
 import java.util.List;
 
 import com.ryzin.penguin.admin.model.FunExp;
+import com.ryzin.penguin.core.page.PageRequest;
+import com.ryzin.penguin.core.page.PageResult;
 import com.ryzin.penguin.core.service.CurdService;
 import com.ryzin.penguin.admin.model.FunExpUser;
 import com.ryzin.penguin.admin.model.FunUserExp;
@@ -16,6 +18,13 @@ public interface FunExpService extends CurdService<FunExp> {
 	 * @return
 	 */
 	List<FunExpUser> findExpUsers(Long expId);
+	
+	/**
+	 * 查询实验用户集合
+	 * @param 
+	 * @return
+	 */
+	PageResult findExpUsersPage(PageRequest pageRequest);
 	
 	/**
 	 * 保存实验被试
@@ -38,4 +47,9 @@ public interface FunExpService extends CurdService<FunExp> {
 	 */
 	int getExpUserCount(Long expId);
 	
+	/**
+	 * 删除已报名被试
+     * @param entities
+     */
+    int deletePeo(List<FunExpUser> records);
 }

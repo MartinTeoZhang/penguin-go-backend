@@ -3,6 +3,8 @@ package com.ryzin.penguin.admin.dao;
 import java.util.List;
 
 import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.SysUser;
+
 import org.apache.ibatis.annotations.Param;
 
 

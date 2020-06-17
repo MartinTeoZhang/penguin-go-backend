@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ryzin.penguin.core.page.ColumnFilter;
 import com.ryzin.penguin.core.page.MybatisPageHelper;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
@@ -45,7 +46,7 @@ public class FunExpUserServiceImpl implements FunExpUserService {
 	public FunExpUser findById(Long id) {
 		return funExpUserMapper.findById(id);
 	}
-
+	
 	@Override
 	public PageResult findPage(PageRequest pageRequest) {
 		return MybatisPageHelper.findPage(pageRequest, funExpUserMapper);
