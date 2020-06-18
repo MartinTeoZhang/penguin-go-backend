@@ -59,7 +59,6 @@ public interface FunExpMapper {
      * @return
      */    
     List<FunExp> findPageByExperimenterUserId(Long user_id);
-    
 	
     /**
      * 根据实验名称查询

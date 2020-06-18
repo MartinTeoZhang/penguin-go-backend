@@ -24,6 +24,8 @@ public interface FunExpUserMapper {
      */
     int delete(Long id);
     
+    int deleteByExpIdAndUserId(Long expId, Long userId);
+    
     /**
      * 修改
      * @param record

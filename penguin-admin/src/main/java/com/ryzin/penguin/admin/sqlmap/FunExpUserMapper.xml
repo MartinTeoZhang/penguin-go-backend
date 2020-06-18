@@ -86,6 +86,13 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   
+  <delete id="deleteByExpIdAndUserId" parameterType="java.lang.Long">
+  	delete from fun_exp_user
+    where exp_id = #{expId,jdbcType=BIGINT}
+    and
+    user_id = #{userId,jdbcType=BIGINT} 
+  </delete>
+  
   <update id="update" parameterType="com.ryzin.penguin.admin.model.FunExpUser">
     update fun_exp_user
     <set>
@@ -119,7 +126,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   
-    <select id="findByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="findByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select * from fun_exp_user
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
@@ -127,7 +134,6 @@
   <select id="findPage" resultMap="BaseResultMap">
     select * from fun_exp_user
   </select>
-  
   
   <update id="updateByPrimaryKey" parameterType="com.ryzin.penguin.admin.model.FunExpUser">
     update fun_exp_user

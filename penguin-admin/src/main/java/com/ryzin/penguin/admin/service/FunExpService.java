@@ -27,6 +27,11 @@ public interface FunExpService extends CurdService<FunExp> {
 	PageResult findExpUsersPage(PageRequest pageRequest);
 	
 	/**
+	 * 查询被试参与的实验
+	 */
+	PageResult findPageByUserName(PageRequest pageRequest);
+	
+	/**
 	 * 保存实验被试
 	 * @param records
 	 * @return
@@ -52,4 +57,10 @@ public interface FunExpService extends CurdService<FunExp> {
      * @param entities
      */
     int deletePeo(List<FunExpUser> records);
+    
+    /**
+	 * 删除已报名被试
+     * @param entities
+     */
+    int deletePeoByExpIdAndUserName(FunExpUser record);
 }

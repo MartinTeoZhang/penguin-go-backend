@@ -90,6 +90,16 @@ public class FunExpServiceImpl implements FunExpService {
 	}
 	
 	@Override
+	public int deletePeoByExpIdAndUserName(FunExpUser record) {
+		Long expId = record.getExpId();
+		Long userId = sysUserMapper.getIdByName(record.getCreateBy());
+		System.out.println("expId:" + expId);
+		System.out.println("userName:" + record.getCreateBy());
+		funExpUserMapper.deleteByExpIdAndUserId(expId, userId);
+		return 1;
+	}
+	
+	@Override
 	public FunExp findById(Long id) {
 		return funExpMapper.findById(id);
 	}
@@ -169,6 +179,19 @@ public class FunExpServiceImpl implements FunExpService {
 		Long expId = Long.parseLong(id);
 		System.out.println("实验id：" + expId);
 		pageResult = MybatisPageHelper.findPage(pageRequest, sysUserMapper, "findExpUsersPageByExpId", expId);
+		return pageResult;
+	}
+	
+	/**
+	 * 获取被试参与的实验
+	 */
+	@Override
+	public PageResult findPageByUserName(PageRequest pageRequest) {
+		PageResult pageResult = null;
+		String userName = getColumnFilterValue(pageRequest, "userName");
+		Long userId = sysUserMapper.getIdByName(userName);
+		System.out.println("用户id：" + userId);
+		pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserId", userId);
 		return pageResult;
 	}
 	

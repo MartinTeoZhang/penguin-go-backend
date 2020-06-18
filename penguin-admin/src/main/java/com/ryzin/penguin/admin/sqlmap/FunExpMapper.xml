@@ -137,7 +137,7 @@
   <select id="findPageByExperimenterUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select * from fun_exp
     where id in 
-    (select exp_id from fun_user_exp where user_id = #{user_id, jdbcType=BIGINT})
+    (select exp_id from fun_user_exp where user_id = #{userId, jdbcType=BIGINT})
   </select>
   
   <select id="findPageByExperimenterUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -167,8 +167,8 @@
   </select>
   
   <select id="getLastExpId" resultType="java.lang.Long">
-        select id from fun_exp
-        order by id
-        desc limit 0,1
+    select id from fun_exp
+    order by id
+    desc limit 0,1
   </select>
 </mapper>
