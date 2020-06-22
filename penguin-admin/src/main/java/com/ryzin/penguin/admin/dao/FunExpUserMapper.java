@@ -37,8 +37,6 @@ public interface FunExpUserMapper {
 
     FunExpUser selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(FunExpUser record);
-
     int updateByPrimaryKey(FunExpUser record);
     
     int deleteByPrimaryKey(Long id);
@@ -64,4 +62,6 @@ public interface FunExpUserMapper {
 	int deleteByExpId(@Param(value="expId") Long expId);
 
     int getExpUserCount(@Param(value="expId") Long expId);
+
+	FunExpUser findByExpIdAndUserId(Long expId, Long userId);
 }

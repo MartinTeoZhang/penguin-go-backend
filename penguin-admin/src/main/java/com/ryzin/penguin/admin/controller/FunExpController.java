@@ -101,9 +101,9 @@ public class FunExpController {
      * @param pageRequest
      * @return
      */    
-	@PostMapping(value="/findPageByUserName")
+	@PostMapping(value="/findSubjectPageByUserName")
 	public HttpResult findPageByUserId(@RequestBody PageRequest pageRequest) {
-		return HttpResult.ok(funExpService.findPageByUserName(pageRequest));
+		return HttpResult.ok(funExpService.findSubjectPageByUserName(pageRequest));
 	}
 	
     /**
@@ -210,6 +210,26 @@ public class FunExpController {
 	}
 	
 	/**
+	 * 查询实验用户
+     * @param expId
+	 * @return
+	 */
+	@GetMapping(value="/findExpUserById")
+	public HttpResult findExpUserByUserId(@RequestParam Long id) {
+		return HttpResult.ok(funExpUserService.findById(id));
+	}
+	
+	/**
+	 * 查询实验用户
+     * @param 
+	 * @return
+	 */
+	@PostMapping(value="/findExpUserByExpIdAndUserName")
+	public HttpResult findExpUserByExpIdAndUserName(@RequestParam Long expId, @RequestParam String userName) {
+		return HttpResult.ok(funExpUserService.findByExpIdAndUserName(expId, userName));
+	}
+	
+	/**
 	 * 查询实验用户集合
      * @param
 	 * @return
@@ -226,9 +246,10 @@ public class FunExpController {
 	 */
 	@PostMapping(value="/saveExpUser")
 	public HttpResult saveExpUser(@RequestBody FunExpUser record) {
+		System.out.println("ExpUserId：" + record.getId());
 		return HttpResult.ok(funExpService.saveExpUser(record));
 	}
-
+	
     /**
      * 查询实验的报名人数
      * @param expId

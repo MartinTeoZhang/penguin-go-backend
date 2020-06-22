@@ -29,7 +29,7 @@ public interface FunExpService extends CurdService<FunExp> {
 	/**
 	 * 查询被试参与的实验
 	 */
-	PageResult findPageByUserName(PageRequest pageRequest);
+	PageResult findSubjectPageByUserName(PageRequest pageRequest);
 	
 	/**
 	 * 保存实验被试

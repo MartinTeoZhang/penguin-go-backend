@@ -186,7 +186,7 @@ public class FunExpServiceImpl implements FunExpService {
 	 * 获取被试参与的实验
 	 */
 	@Override
-	public PageResult findPageByUserName(PageRequest pageRequest) {
+	public PageResult findSubjectPageByUserName(PageRequest pageRequest) {
 		PageResult pageResult = null;
 		String userName = getColumnFilterValue(pageRequest, "userName");
 		Long userId = sysUserMapper.getIdByName(userName);
@@ -198,16 +198,16 @@ public class FunExpServiceImpl implements FunExpService {
 	@Transactional
 	@Override
 	public int saveExpUser(FunExpUser record) {  // 保存实验被试记录
-		if(record.getId() == null || record.getId() == 0) {
-			return funExpUserMapper.insertSelective(record);
+		if(record.getId() == null) {
+			return funExpUserMapper.insert(record);
 		}
-		return funExpUserMapper.updateByPrimaryKeySelective(record);
+		return funExpUserMapper.update(record);
 	}
 	
 	@Transactional
 	@Override
 	public int saveUserExp(FunUserExp record) {  // 保存主试实验记录
-		if(record.getId() == null || record.getId() == 0) {
+		if(record.getId() == null) {
 			return funUserExpMapper.insert(record);
 		}
 		return funUserExpMapper.update(record);
