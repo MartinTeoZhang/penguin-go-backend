@@ -3,24 +3,19 @@ package com.ryzin.penguin.admin.dao;
 import java.util.List;
 
 import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.SysUser;
 
-/**
- * ---------------------------
- *  (FunExpUserMapper)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
+import org.apache.ibatis.annotations.Param;
+
+
 public interface FunExpUserMapper {
 
-	/**
+    /**
 	 * 添加
 	 * @param record
 	 * @return
 	 */
-    int add(FunExpUser record);
+    int insert(FunExpUser record);
 
     /**
      * 删除
@@ -29,6 +24,8 @@ public interface FunExpUserMapper {
      */
     int delete(Long id);
     
+    int deleteByExpIdAndUserId(Long expId, Long userId);
+    
     /**
      * 修改
      * @param record
@@ -36,26 +33,35 @@ public interface FunExpUserMapper {
      */
     int update(FunExpUser record);
     
-    /**
+    int insertSelective(FunExpUser record);
+
+    FunExpUser selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(FunExpUser record);
+
+    int updateByPrimaryKey(FunExpUser record);
+    
+    int deleteByPrimaryKey(Long id);
+    
+	List<FunExpUser> findExpUsers(@Param(value="expId") Long expId);
+	
+	List<FunExpUser> findAll();
+	
+	 /**
      * 根据主键查询
      * @param id
      * @return
      */    
     FunExpUser findById(Long id);
-
-    /**
-     * 基础分页查询
-     * @param record
-     * @return
-     */    
-    List<FunExpUser> findPage();
     
     /**
      * 根据user_id查询
      * @param id
      * @return
      */    
-    List<FunExpUser> findByUserId(long user_id);
-    
-    
+    List<FunExpUser> findByUserId(@Param(value="userId") Long userId);
+
+	int deleteByExpId(@Param(value="expId") Long expId);
+
+    int getExpUserCount(@Param(value="expId") Long expId);
 }

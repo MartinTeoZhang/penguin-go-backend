@@ -1,23 +1,13 @@
 package com.ryzin.penguin.admin.model;
 
-/**
- * ---------------------------
- *  (FunExp)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
-public class FunExp {
 
-	/** 编号 */
-	private Long id;
+public class FunExp extends BaseModel{
+
 	/** 实验名称 */
 	private String name;
-	/** 实验状态 0：审核中 1：未发布 2：发布中 3：已结束 */
+	/** 实验状态 */
 	private Integer status;
-	/** 实验类型 */
+	/** 实验类型 0：审核中 1：未发布 2：发布中 3：已结束 */
 	private String types;
 	/** 实验报酬下限 */
 	private String payment;
@@ -38,27 +28,11 @@ public class FunExp {
 	/** 实验偏好 */
 	private String preferences;
 	/** 问卷ID */
-	private String questionnaireId;
+	private Integer questionnaireId;
 	/** 图片 */
 	private String fileList;
 	/** 备注 */
 	private String note;
-	/** 创建人 */
-	private String createBy;
-	/** 创建时间 */
-	private java.util.Date createTime;
-	/** 更新人 */
-	private String lastUpdateBy;
-	/** 更新时间 */
-	private java.util.Date lastUpdateTime;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -156,11 +130,11 @@ public class FunExp {
 		this.preferences = preferences;
 	}
 
-	public String getQuestionnaireId() {
+	public Integer getQuestionnaireId() {
 		return questionnaireId;
 	}
 
-	public void setQuestionnaireId(String questionnaireId) {
+	public void setQuestionnaireId(Integer questionnaireId) {
 		this.questionnaireId = questionnaireId;
 	}
 
@@ -178,38 +152,6 @@ public class FunExp {
 
 	public void setNote(String note) {
 		this.note = note;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public java.util.Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(java.util.Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getLastUpdateBy() {
-		return lastUpdateBy;
-	}
-
-	public void setLastUpdateBy(String lastUpdateBy) {
-		this.lastUpdateBy = lastUpdateBy;
-	}
-
-	public java.util.Date getLastUpdateTime() {
-		return lastUpdateTime;
-	}
-
-	public void setLastUpdateTime(java.util.Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
 	}
 
 }

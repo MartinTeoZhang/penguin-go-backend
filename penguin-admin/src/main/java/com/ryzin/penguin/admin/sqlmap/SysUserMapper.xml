@@ -218,4 +218,15 @@
     where u.name like #{patternName}
     and u.email like #{patternEmail}
   </select>
+  <select id="findExpUsersPageByExpId" parameterType="java.lang.Long" resultMap="BaseResultMap">   
+    select t.id , s.name, s.email, s.mobile, t.create_time
+    from 
+    sys_user as s
+    inner join
+    (select * 
+    from 
+    fun_exp_user 
+    where exp_id = #{expId, jdbcType=BIGINT}) as t
+    on s.id = t.user_id
+  </select>
 </mapper>

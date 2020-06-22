@@ -12,7 +12,7 @@
 	<result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   
-  <insert id="add" parameterType="com.ryzin.penguin.admin.model.FunUserExp">
+  <insert id="insert" parameterType="com.ryzin.penguin.admin.model.FunUserExp">
     insert into fun_user_exp
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -102,11 +102,20 @@
   
   <select id="findByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select * from fun_exp_user
-    where user_id = #{user_id,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT}
   </select>
   
   <select id="findPage" resultMap="BaseResultMap">
     select * from fun_user_exp
   </select>
   
+  <delete id="deleteByUserName" parameterType="java.lang.Long">
+    delete from fun_user_exp
+    where create_by = #{userName,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByExpId" parameterType="java.lang.Long">
+    delete from fun_user_exp
+    where exp_id = #{expId,jdbcType=BIGINT}
+  </delete>
 </mapper>

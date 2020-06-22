@@ -2,11 +2,13 @@ package com.ryzin.penguin.admin.controller;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,15 +30,6 @@ import com.ryzin.penguin.admin.service.FunUserExpService;
 import com.ryzin.penguin.admin.service.SysUserService;
 
 
-/**
- * ---------------------------
- *  (FunExpController)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-06-01 15:26:15
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
 @RestController
 @RequestMapping("funExp")
 public class FunExpController {
@@ -73,6 +66,26 @@ public class FunExpController {
 	public HttpResult delete(@RequestBody List<FunExp> records) {
 		return HttpResult.ok(funExpService.delete(records));
 	}
+	
+	/**
+     * 删除
+     * @param records
+     * @return
+     */
+	@PostMapping(value="/deletePeo")
+	public HttpResult deletePeo(@RequestBody List<FunExpUser> records) {
+		return HttpResult.ok(funExpService.deletePeo(records));
+	}
+	
+	/**
+     * 删除
+     * @param records
+     * @return
+     */
+	@PostMapping(value="/deletePeoByExpIdAndUserName")
+	public HttpResult deletePeoByExpIdAndUserName(@RequestBody FunExpUser record) {
+		return HttpResult.ok(funExpService.deletePeoByExpIdAndUserName(record));
+	}
 
     /**
      * 基础分页查询
@@ -84,6 +97,14 @@ public class FunExpController {
 		return HttpResult.ok(funExpService.findPage(pageRequest));
 	}
 	
+	/**
+     * @param pageRequest
+     * @return
+     */    
+	@PostMapping(value="/findPageByUserName")
+	public HttpResult findPageByUserId(@RequestBody PageRequest pageRequest) {
+		return HttpResult.ok(funExpService.findPageByUserName(pageRequest));
+	}
 	
     /**
      * 根据主键查询
@@ -100,10 +121,10 @@ public class FunExpController {
      * @param id
      * @return
      */ 	
-	@PreAuthorize("hasAuthority('sys:user:view')")
-	@GetMapping(value="/gatExpStatData")
+	@PreAuthorize("hasAuthority('fun:exp:view')")
+	@GetMapping(value="/getExpStatData")
 	
-	public HttpResult gatExpStatData(@RequestParam Long id) {
+	public HttpResult getExpStatData(@RequestParam Long id) {
 		SysUser user = sysUserService.findById(id);
 		user.setUserRoles(sysUserService.findUserRoles(id));
 		Map<String,Long> resultMap = new HashMap<String, Long>(); 
@@ -178,4 +199,43 @@ public class FunExpController {
 		return HttpResult.ok(resultMap);
 	}
 	
+	/**
+	 * 查询实验用户集合
+     * @param expId
+	 * @return
+	 */
+	@GetMapping(value="/findExpUsers")
+	public HttpResult findExpUsers(@RequestParam Long expId) {
+		return HttpResult.ok(funExpService.findExpUsers(expId));
+	}
+	
+	/**
+	 * 查询实验用户集合
+     * @param
+	 * @return
+	 */
+	@PostMapping(value="/findExpUsersPage")
+	public HttpResult findExpUsersPage(@RequestBody PageRequest pageRequest) {
+		return HttpResult.ok(funExpService.findExpUsersPage(pageRequest));
+	}
+	
+	/**
+	 * 保存实验用户
+	 * @param records
+	 * @return
+	 */
+	@PostMapping(value="/saveExpUser")
+	public HttpResult saveExpUser(@RequestBody FunExpUser record) {
+		return HttpResult.ok(funExpService.saveExpUser(record));
+	}
+
+    /**
+     * 查询实验的报名人数
+     * @param expId
+     * @return
+     */
+    @GetMapping(value="/getExpUserCount")
+    public HttpResult getExpUserCount(@RequestParam Long expId) {
+        return HttpResult.ok(funExpService.getExpUserCount(expId));
+    }
 }
