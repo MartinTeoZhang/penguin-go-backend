@@ -2,19 +2,13 @@ package com.ryzin.penguin.admin.dao;
 
 import java.util.List;
 
+import com.ryzin.penguin.admin.model.FunExp;
+import com.ryzin.penguin.core.page.PageResult;
+
+
 import org.apache.ibatis.annotations.Param;
 
-import com.ryzin.penguin.admin.model.FunExp;
 
-/**
- * ---------------------------
- *  (FunExpMapper)         
- * ---------------------------
- * 作者：  kitty-generator
- * 时间：  2020-04-16 09:19:23
- * 说明：  我是由代码生成器生生成的
- * ---------------------------
- */
 public interface FunExpMapper {
 
 	/**
@@ -22,7 +16,7 @@ public interface FunExpMapper {
 	 * @param record
 	 * @return
 	 */
-    int add(FunExp record);
+    int insert(FunExp record);
 
     /**
      * 删除
@@ -51,6 +45,20 @@ public interface FunExpMapper {
      * @return
      */    
     List<FunExp> findPage();
+    
+    /**
+     * 根据被试user_id分页查询
+     * @param user_id
+     * @return
+     */    
+    List<FunExp> findPageBySubjectUserId(Long user_id);
+    
+    /**
+     * 根据主试user_id分页查询
+     * @param user_id
+     * @return
+     */    
+    List<FunExp> findPageByExperimenterUserId(Long user_id);
 	
     /**
      * 根据实验名称查询
@@ -66,4 +74,10 @@ public interface FunExpMapper {
 	 */    
 	List<FunExp> findPageByStatus(@Param(value="status") Integer status);
 	
+	/**
+	 * 查询最后一条记录的Id
+	 * @param status
+	 * @return
+	 */   
+	Long getLastExpId();
 }

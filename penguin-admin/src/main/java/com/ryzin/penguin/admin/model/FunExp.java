@@ -34,7 +34,6 @@ public class FunExp extends BaseModel{
 	/** 备注 */
 	private String note;
 
-
 	public String getName() {
 		return name;
 	}
