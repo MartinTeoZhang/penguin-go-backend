@@ -2,7 +2,6 @@ package com.ryzin.penguin.admin.dao;
 
 import java.util.List;
 
-import com.ryzin.penguin.admin.model.FunExpUser;
 import com.ryzin.penguin.admin.model.FunUserExp;
 
 
@@ -51,7 +50,9 @@ public interface FunUserExpMapper {
      * @param id
      * @return
      */    
-    List<FunExpUser> findByUserId(@Param(value="userId") Long userId);
+    List<FunUserExp> findByUserId(@Param(value="userId") Long userId);
+    
+    FunUserExp findByExpId(@Param(value="expId") Long expId);
     
     int deleteByUserName(@Param(value="userName") String userName);
     

@@ -23,6 +23,7 @@ import net.sf.json.JSONObject;
 
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.FunUserExp;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.FunExpService;
 import com.ryzin.penguin.admin.service.FunExpUserService;
@@ -164,7 +165,7 @@ public class FunExpController {
 			
 		}else if(user.getUserRoles().get(0).getRoleId() == 10) {
 			//角色为主试
-			List<FunExpUser> attendRecords = new LinkedList<>();
+			List<FunUserExp> attendRecords = new LinkedList<>();
 			List<FunExp> expRecords = new LinkedList<>();
 			//查询主试的实验
 			attendRecords = funUserExpService.findUserExpByUserId(id);
@@ -180,7 +181,7 @@ public class FunExpController {
 			long timeCount = 0;
 			
 			long paymentCount = 0;
-			for(FunExpUser record : attendRecords) {
+			for(FunUserExp record : attendRecords) {
 				FunExp tempExp = funExpService.findById(record.getExpId());
 				expRecords.add(tempExp);
 				timeCount += tempExp.getDuration();
@@ -258,5 +259,15 @@ public class FunExpController {
     @GetMapping(value="/getExpUserCount")
     public HttpResult getExpUserCount(@RequestParam Long expId) {
         return HttpResult.ok(funExpService.getExpUserCount(expId));
+    }
+    
+    /**
+     * 查询实验主试
+     * @param expId
+     * @return
+     */
+    @GetMapping(value="/findUserExpByExpId")
+    public HttpResult findUserExpByExpId(@RequestParam Long expId) {
+        return HttpResult.ok(funUserExpService.findUserExpByExpId(expId));
     }
 }

@@ -63,8 +63,6 @@ public class FunExpUserServiceImpl implements FunExpUserService {
 	@Override
 	public FunExpUser findByExpIdAndUserName(Long expId, String userName) {
 		Long userId = sysUserMapper.getIdByName(userName);
-		System.out.println("expId:" + expId);
-		System.out.println("userName:" + userName);
 		return funExpUserMapper.findByExpIdAndUserId(expId, userId);
 	}
 	
