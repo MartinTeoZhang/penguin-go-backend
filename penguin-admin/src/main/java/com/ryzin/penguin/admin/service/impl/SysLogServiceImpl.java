@@ -18,7 +18,7 @@ public class SysLogServiceImpl  implements SysLogService {
 
 	@Autowired
 	private SysLogMapper sysLogMapper;
-
+	
 	@Override
 	public int save(SysLog record) {
 		if(record.getId() == null || record.getId() == 0) {
