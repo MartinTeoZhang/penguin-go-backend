@@ -23,6 +23,7 @@ import net.sf.json.JSONObject;
 
 import com.ryzin.penguin.admin.model.FunExp;
 import com.ryzin.penguin.admin.model.FunExpUser;
+import com.ryzin.penguin.admin.model.FunUserExp;
 import com.ryzin.penguin.admin.model.SysUser;
 import com.ryzin.penguin.admin.service.FunExpService;
 import com.ryzin.penguin.admin.service.FunExpUserService;
@@ -101,9 +102,9 @@ public class FunExpController {
      * @param pageRequest
      * @return
      */    
-	@PostMapping(value="/findPageByUserName")
+	@PostMapping(value="/findSubjectPageByUserName")
 	public HttpResult findPageByUserId(@RequestBody PageRequest pageRequest) {
-		return HttpResult.ok(funExpService.findPageByUserName(pageRequest));
+		return HttpResult.ok(funExpService.findSubjectPageByUserName(pageRequest));
 	}
 	
     /**
@@ -164,7 +165,7 @@ public class FunExpController {
 			
 		}else if(user.getUserRoles().get(0).getRoleId() == 10) {
 			//角色为主试
-			List<FunExpUser> attendRecords = new LinkedList<>();
+			List<FunUserExp> attendRecords = new LinkedList<>();
 			List<FunExp> expRecords = new LinkedList<>();
 			//查询主试的实验
 			attendRecords = funUserExpService.findUserExpByUserId(id);
@@ -180,7 +181,7 @@ public class FunExpController {
 			long timeCount = 0;
 			
 			long paymentCount = 0;
-			for(FunExpUser record : attendRecords) {
+			for(FunUserExp record : attendRecords) {
 				FunExp tempExp = funExpService.findById(record.getExpId());
 				expRecords.add(tempExp);
 				timeCount += tempExp.getDuration();
@@ -210,6 +211,26 @@ public class FunExpController {
 	}
 	
 	/**
+	 * 查询实验用户
+     * @param expId
+	 * @return
+	 */
+	@GetMapping(value="/findExpUserById")
+	public HttpResult findExpUserByUserId(@RequestParam Long id) {
+		return HttpResult.ok(funExpUserService.findById(id));
+	}
+	
+	/**
+	 * 查询实验用户
+     * @param 
+	 * @return
+	 */
+	@PostMapping(value="/findExpUserByExpIdAndUserName")
+	public HttpResult findExpUserByExpIdAndUserName(@RequestParam Long expId, @RequestParam String userName) {
+		return HttpResult.ok(funExpUserService.findByExpIdAndUserName(expId, userName));
+	}
+	
+	/**
 	 * 查询实验用户集合
      * @param
 	 * @return
@@ -226,9 +247,10 @@ public class FunExpController {
 	 */
 	@PostMapping(value="/saveExpUser")
 	public HttpResult saveExpUser(@RequestBody FunExpUser record) {
+		System.out.println("ExpUserId：" + record.getId());
 		return HttpResult.ok(funExpService.saveExpUser(record));
 	}
-
+	
     /**
      * 查询实验的报名人数
      * @param expId
@@ -237,5 +259,15 @@ public class FunExpController {
     @GetMapping(value="/getExpUserCount")
     public HttpResult getExpUserCount(@RequestParam Long expId) {
         return HttpResult.ok(funExpService.getExpUserCount(expId));
+    }
+    
+    /**
+     * 查询实验主试
+     * @param expId
+     * @return
+     */
+    @GetMapping(value="/findUserExpByExpId")
+    public HttpResult findUserExpByExpId(@RequestParam Long expId) {
+        return HttpResult.ok(funUserExpService.findUserExpByExpId(expId));
     }
 }

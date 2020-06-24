@@ -2,7 +2,10 @@ package com.ryzin.penguin.admin.service;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.ryzin.penguin.admin.model.FunExp;
+import com.ryzin.penguin.core.http.HttpResult;
 import com.ryzin.penguin.core.page.PageRequest;
 import com.ryzin.penguin.core.page.PageResult;
 import com.ryzin.penguin.core.service.CurdService;
@@ -29,7 +32,7 @@ public interface FunExpService extends CurdService<FunExp> {
 	/**
 	 * 查询被试参与的实验
 	 */
-	PageResult findPageByUserName(PageRequest pageRequest);
+	PageResult findSubjectPageByUserName(PageRequest pageRequest);
 	
 	/**
 	 * 保存实验被试
@@ -63,4 +66,5 @@ public interface FunExpService extends CurdService<FunExp> {
      * @param entities
      */
     int deletePeoByExpIdAndUserName(FunExpUser record);
+    
 }

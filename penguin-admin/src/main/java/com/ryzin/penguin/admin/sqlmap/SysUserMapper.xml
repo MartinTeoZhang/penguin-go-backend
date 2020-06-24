@@ -219,7 +219,7 @@
     and u.email like #{patternEmail}
   </select>
   <select id="findExpUsersPageByExpId" parameterType="java.lang.Long" resultMap="BaseResultMap">   
-    select t.id , s.name, s.email, s.mobile, t.create_time
+    select t.id , s.name, s.email, s.mobile, t.create_time, t.status
     from 
     sys_user as s
     inner join

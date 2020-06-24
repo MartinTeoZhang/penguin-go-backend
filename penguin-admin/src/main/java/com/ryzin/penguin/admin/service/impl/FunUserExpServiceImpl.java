@@ -52,8 +52,16 @@ public class FunUserExpServiceImpl implements FunUserExpService {
 	}
 	
 	@Override
-	public List<FunExpUser> findUserExpByUserId(long id){
+	public List<FunUserExp> findUserExpByUserId(long id){
 		return funUserExpMapper.findByUserId(id);
 	}
 	
+	
+    /**
+	 * 查询实验主试
+     * @param 
+     */
+    public FunUserExp findUserExpByExpId(Long expId) {
+    	return funUserExpMapper.findByExpId(expId);
+    }
 }
