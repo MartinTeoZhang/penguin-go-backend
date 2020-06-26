@@ -66,5 +66,12 @@ public interface FunExpService extends CurdService<FunExp> {
      * @param entities
      */
     int deletePeoByExpIdAndUserName(FunExpUser record);
+
+    /**
+	 * 根据实验状态查询
+	 * @param pageRequest
+	 * @return
+	 */
+	PageResult findPageByStatus(PageRequest pageRequest);
     
 }

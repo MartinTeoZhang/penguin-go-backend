@@ -3,34 +3,34 @@
 <mapper namespace="com.ryzin.penguin.admin.dao.FunExpMapper">
 
   <resultMap id="BaseResultMap" type="com.ryzin.penguin.admin.model.FunExp">
-	<id column="id" jdbcType="BIGINT" property="id" />
-	<result column="name" jdbcType="VARCHAR" property="name" />
-	<result column="status" jdbcType="TINYINT" property="status" />
-	<result column="types" jdbcType="VARCHAR" property="types" />
-	<result column="payment" jdbcType="VARCHAR" property="payment" />
-	<result column="contact" jdbcType="VARCHAR" property="contact" />
-	<result column="people_num" jdbcType="INTEGER" property="peopleNum" />
-	<result column="location" jdbcType="VARCHAR" property="location" />
-	<result column="content" jdbcType="VARCHAR" property="content" />
-	<result column="time" jdbcType="VARCHAR" property="time" />
-	<result column="duration" jdbcType="INTEGER" property="duration" />
-	<result column="requirements" jdbcType="VARCHAR" property="requirements" />
-	<result column="preferences" jdbcType="VARCHAR" property="preferences" />
-	<result column="questionnaire_id" jdbcType="VARCHAR" property="questionnaireId" />
-	<result column="file_list" jdbcType="VARCHAR" property="fileList" />
-	<result column="note" jdbcType="VARCHAR" property="note" />
-	<result column="create_by" jdbcType="VARCHAR" property="createBy" />
-	<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-	<result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
-	<result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  <id column="id" jdbcType="BIGINT" property="id" />
+  <result column="name" jdbcType="VARCHAR" property="name" />
+  <result column="status" jdbcType="TINYINT" property="status" />
+  <result column="types" jdbcType="VARCHAR" property="types" />
+  <result column="payment" jdbcType="VARCHAR" property="payment" />
+  <result column="contact" jdbcType="VARCHAR" property="contact" />
+  <result column="people_num" jdbcType="INTEGER" property="peopleNum" />
+  <result column="location" jdbcType="VARCHAR" property="location" />
+  <result column="content" jdbcType="VARCHAR" property="content" />
+  <result column="time" jdbcType="VARCHAR" property="time" />
+  <result column="duration" jdbcType="INTEGER" property="duration" />
+  <result column="requirements" jdbcType="VARCHAR" property="requirements" />
+  <result column="preferences" jdbcType="VARCHAR" property="preferences" />
+  <result column="questionnaire_id" jdbcType="VARCHAR" property="questionnaireId" />
+  <result column="file_list" jdbcType="VARCHAR" property="fileList" />
+  <result column="note" jdbcType="VARCHAR" property="note" />
+  <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+  <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+  <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
   
   <insert id="insert" parameterType="com.ryzin.penguin.admin.model.FunExp">
-  	insert into fun_exp (id, name, status, 
- 	  types, payment, contact,
- 	  people_num, location, content,
- 	  time, duration, requirements,
- 	  preferences, questionnaire_id, file_list, note,
+    insert into fun_exp (id, name, status, 
+    types, payment, contact,
+    people_num, location, content,
+    time, duration, requirements,
+    preferences, questionnaire_id, file_list, note,
       create_by, create_time, last_update_by, last_update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
        #{types,jdbcType=VARCHAR}, #{payment, jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
@@ -125,10 +125,10 @@
   </select>
   
   <select id="findPageBySubjectUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
-  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
-  	select * from 
-  	(select * from fun_exp
+    <bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+    <bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+    select * from 
+    (select * from fun_exp
     where id in 
     (select exp_id from fun_exp_user where user_id = #{patternUserId}))
     where name like #{patternExpName}
@@ -141,10 +141,10 @@
   </select>
   
   <select id="findPageByExperimenterUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
-  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
-  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
-  	select * from 
-  	(select * from fun_exp
+    <bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+    <bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+    select * from 
+    (select * from fun_exp
     where id in 
     (select exp_id from fun_user_exp where user_id = #{patternUserId}))
     where name like #{patternExpName}
@@ -161,9 +161,14 @@
   </select>
 
   <select id="findPageByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <bind name="pattern" value="'%' + _parameter.status + '%'" />
     select * from fun_exp
-    where status like #{pattern}
+    where status = #{status,jdbcType=TINYINT}
+  </select>
+
+  <select id="findPageByNameAndStatus" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.name + '%'" />
+    select * from fun_exp
+    where status = #{status,jdbcType=TINYINT} and name like #{pattern}
   </select>
   
   <select id="getLastExpId" resultType="java.lang.Long">

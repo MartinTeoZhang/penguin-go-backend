@@ -218,4 +218,19 @@ public class FunExpServiceImpl implements FunExpService {
 		return funExpUserMapper.getExpUserCount(expId);
 	}
 
+	@Override
+	public PageResult findPageByStatus(PageRequest pageRequest) {
+		String name = getColumnFilterValue(pageRequest, "name");
+		String status = getColumnFilterValue(pageRequest, "status");
+		if(status != null) {
+			Integer sta = Integer.valueOf(status);
+			if(name != null)
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByNameAndStatus", name, sta);
+			else
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByStatus", sta);
+		}else{
+			return MybatisPageHelper.findPage(pageRequest, funExpMapper);
+		}
+	}
+
 }

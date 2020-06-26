@@ -270,4 +270,14 @@ public class FunExpController {
     public HttpResult findUserExpByExpId(@RequestParam Long expId) {
         return HttpResult.ok(funUserExpService.findUserExpByExpId(expId));
     }
+
+    /**
+    * 根据实验状态查询
+    * @param pageRequest
+    * @return
+    */    
+    @PostMapping(value="/findPageByStatus")
+    public HttpResult findPageByStatus(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(funExpService.findPageByStatus(pageRequest));
+    }
 }

@@ -29,6 +29,7 @@
       create_by, create_time, last_update_by, 
       last_update_time)
     values (#{id,jdbcType=BIGINT}, #{expId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{status,jdbcType=TINYINT},
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -94,14 +95,14 @@
   </delete>
   
   <delete id="deleteByExpIdAndUserId" parameterType="java.lang.Long">
-  	delete from fun_exp_user
+    delete from fun_exp_user
     where exp_id = #{expId,jdbcType=BIGINT}
     and
     user_id = #{userId,jdbcType=BIGINT} 
   </delete>
   
   <select id="findByExpIdAndUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-  	select * from fun_exp_user
+    select * from fun_exp_user
     where exp_id = #{expId,jdbcType=BIGINT}
     and
     user_id = #{userId,jdbcType=BIGINT} 
