@@ -95,14 +95,14 @@
   </delete>
   
   <delete id="deleteByExpIdAndUserId" parameterType="java.lang.Long">
-    delete from fun_exp_user
+  	delete from fun_exp_user
     where exp_id = #{expId,jdbcType=BIGINT}
     and
     user_id = #{userId,jdbcType=BIGINT} 
   </delete>
   
   <select id="findByExpIdAndUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select * from fun_exp_user
+  	select * from fun_exp_user
     where exp_id = #{expId,jdbcType=BIGINT}
     and
     user_id = #{userId,jdbcType=BIGINT} 

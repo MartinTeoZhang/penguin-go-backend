@@ -11,11 +11,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface FunExpMapper {
 
-    /**
-     * 添加
-     * @param record
-     * @return
-     */
+	/**
+	 * 添加
+	 * @param record
+	 * @return
+	 */
     int insert(FunExp record);
 
     /**
@@ -59,7 +59,7 @@ public interface FunExpMapper {
      * @return
      */    
     List<FunExp> findPageByExperimenterUserId(Long user_id);
-    
+
     /**
      * 根据实验名称查询
      * @param name

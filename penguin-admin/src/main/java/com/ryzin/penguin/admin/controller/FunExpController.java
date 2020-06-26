@@ -122,7 +122,7 @@ public class FunExpController {
      * @param id
      * @return
      */ 	
-	@PreAuthorize("hasAuthority('fun:exp:view')")
+	@PreAuthorize("hasAuthority('fun:exper:viewexp')")
 	@GetMapping(value="/getExpStatData")
 	
 	public HttpResult getExpStatData(@RequestParam Long id) {

@@ -26,11 +26,11 @@
   </resultMap>
   
   <insert id="insert" parameterType="com.ryzin.penguin.admin.model.FunExp">
-    insert into fun_exp (id, name, status, 
-    types, payment, contact,
-    people_num, location, content,
-    time, duration, requirements,
-    preferences, questionnaire_id, file_list, note,
+  	insert into fun_exp (id, name, status, 
+ 	  types, payment, contact,
+ 	  people_num, location, content,
+ 	  time, duration, requirements,
+ 	  preferences, questionnaire_id, file_list, note,
       create_by, create_time, last_update_by, last_update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
        #{types,jdbcType=VARCHAR}, #{payment, jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
@@ -125,10 +125,10 @@
   </select>
   
   <select id="findPageBySubjectUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    <bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
-    <bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
-    select * from 
-    (select * from fun_exp
+  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+  	select * from 
+  	(select * from fun_exp
     where id in 
     (select exp_id from fun_exp_user where user_id = #{patternUserId}))
     where name like #{patternExpName}
@@ -141,10 +141,10 @@
   </select>
   
   <select id="findPageByExperimenterUserIdAndExpName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    <bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
-    <bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
-    select * from 
-    (select * from fun_exp
+  	<bind name="patternUserId" value="'%' + _parameter.userId + '%'" />
+  	<bind name="patternExpName" value="'%' + _parameter.expName + '%'" />
+  	select * from 
+  	(select * from fun_exp
     where id in 
     (select exp_id from fun_user_exp where user_id = #{patternUserId}))
     where name like #{patternExpName}

@@ -28,10 +28,6 @@ public interface SysUserMapper {
     List<SysUser> findPageByName(@Param(value="name") String name);
     
     List<SysUser> findPageByNameAndEmail(@Param(value="name") String name, @Param(value="email") String email);
-<<<<<<< HEAD
-	
-=======
 
     List<SysUser> findExpUsersPageByExpId(@Param(value="expId") Long expId);
->>>>>>> 4d631f83e7eb7ea9c166fd7d2c0516757bb67fff
 }
