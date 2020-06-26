@@ -20,7 +20,7 @@ public interface FunExpService extends CurdService<FunExp> {
 	 * @param expId
 	 * @return
 	 */
-	List<FunExpUser> findExpUsers(Long expId);
+	List<FunExpUser> findExpUsers(Long expId, String userName);
 	
 	/**
 	 * 查询实验用户集合
@@ -66,5 +66,13 @@ public interface FunExpService extends CurdService<FunExp> {
      * @param entities
      */
     int deletePeoByExpIdAndUserName(FunExpUser record);
+
+    /**
+	 * 根据实验状态查询
+	 * @param pageRequest
+	 * @return
+	 */
+	PageResult findPageByStatus(PageRequest pageRequest);
+
     
 }

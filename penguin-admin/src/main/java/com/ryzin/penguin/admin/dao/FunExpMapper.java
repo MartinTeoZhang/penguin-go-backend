@@ -59,7 +59,7 @@ public interface FunExpMapper {
      * @return
      */    
     List<FunExp> findPageByExperimenterUserId(Long user_id);
-	
+
     /**
      * 根据实验名称查询
      * @param name
@@ -67,17 +67,24 @@ public interface FunExpMapper {
      */    
     List<FunExp> findPageByName(@Param(value="name") String name);
 
-	/**
-	 * 根据实验状态查询
-	 * @param status
-	 * @return
-	 */    
-	List<FunExp> findPageByStatus(@Param(value="status") Integer status);
-	
-	/**
-	 * 查询最后一条记录的Id
-	 * @param status
-	 * @return
-	 */   
-	Long getLastExpId();
+    /**
+     * 根据实验状态查询
+     * @param status
+     * @return
+     */    
+    List<FunExp> findPageByStatus(@Param(value="status") Integer status);
+    /**
+     * 根据实验名称和状态查询
+     * @param name
+     * @param status
+     * @return
+     */    
+    List<FunExp> findPageByNameAndStatus(@Param(value="name") String name, @Param(value="status") Integer status);
+    
+    /**
+     * 查询最后一条记录的Id
+     * @param status
+     * @return
+     */   
+    Long getLastExpId();
 }
