@@ -20,7 +20,7 @@ public interface FunExpService extends CurdService<FunExp> {
 	 * @param expId
 	 * @return
 	 */
-	List<FunExpUser> findExpUsers(Long expId);
+	List<FunExpUser> findExpUsers(Long expId, String userName);
 	
 	/**
 	 * 查询实验用户集合

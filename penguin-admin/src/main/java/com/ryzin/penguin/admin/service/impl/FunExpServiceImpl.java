@@ -155,12 +155,14 @@ public class FunExpServiceImpl implements FunExpService {
 	}
 	
 	/**
-	 * 根据实验id获取被试列表
+	 * 根据实验id和userName获取被试列表
 	 * @author gyc
 	 */
 	@Override
-	public List<FunExpUser> findExpUsers(Long expId) {
-		return funExpUserMapper.findExpUsers(expId);
+	public List<FunExpUser> findExpUsers(Long expId, String userName) {
+		//通过userName获得userId
+		Long userId = sysUserMapper.getIdByName(userName);
+		return funExpUserMapper.findExpUsers(expId, userId);
 	}
 	
 	/**
@@ -194,6 +196,9 @@ public class FunExpServiceImpl implements FunExpService {
 	@Override
 	public int saveExpUser(FunExpUser record) {  // 保存实验被试记录
 		if(record.getId() == null) {
+			//通过userName获得userId
+			Long userId = sysUserMapper.getIdByName(record.getCreateBy());
+			record.setUserId(userId);
 			return funExpUserMapper.insert(record);
 		}
 		return funExpUserMapper.update(record);

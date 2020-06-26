@@ -206,9 +206,9 @@ public class FunExpController {
 	 * @return
 	 */
 	@GetMapping(value="/findExpUsers")
-	public HttpResult findExpUsers(@RequestParam Long expId) {
-		return HttpResult.ok(funExpService.findExpUsers(expId));
-	}
+    public HttpResult findExpUsers(@RequestParam Long expId, @RequestParam String userName) {
+        return HttpResult.ok(funExpService.findExpUsers(expId, userName));
+    }
 	
 	/**
 	 * 查询实验用户
