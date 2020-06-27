@@ -110,32 +110,27 @@ public class FunExpServiceImpl implements FunExpService {
 		String userName = getColumnFilterValue(pageRequest, "userName");
 		String expName = getColumnFilterValue(pageRequest, "expName");
 		if(userName != null && userName.length() > 0) {
-
 			SysUser user = sysUserMapper.findByName(userName);
 			List<SysUserRole> roles = sysUserRoleMapper.findUserRoles(user.getId());
 			//角色为被试
 			if(roles.get(0).getRoleId() == 9) {
-
 				if(expName != null)
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserIdAndExpName", user.getId(), expName);
 				else
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageBySubjectUserId", user.getId());
 			}else if(roles.get(0).getRoleId() == 10) {
-
 				//角色为主试
 				if(expName != null)
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByExperimenterUserIdAndExpName", user.getId(), expName);
 				else
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByExperimenterUserId", user.getId());
 			}else {
-
 				if(expName != null)
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByName", expName);
 				else
 					pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper);
 			}
 		}else {
-
 			if(expName != null)
 				pageResult = MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByName", expName);
 			else
@@ -160,12 +155,14 @@ public class FunExpServiceImpl implements FunExpService {
 	}
 	
 	/**
-	 * 根据实验id获取被试列表
+	 * 根据实验id和userName获取被试列表
 	 * @author gyc
 	 */
 	@Override
-	public List<FunExpUser> findExpUsers(Long expId) {
-		return funExpUserMapper.findExpUsers(expId);
+	public List<FunExpUser> findExpUsers(Long expId, String userName) {
+		//通过userName获得userId
+		Long userId = sysUserMapper.getIdByName(userName);
+		return funExpUserMapper.findExpUsers(expId, userId);
 	}
 	
 	/**
@@ -199,6 +196,9 @@ public class FunExpServiceImpl implements FunExpService {
 	@Override
 	public int saveExpUser(FunExpUser record) {  // 保存实验被试记录
 		if(record.getId() == null) {
+			//通过userName获得userId
+			Long userId = sysUserMapper.getIdByName(record.getCreateBy());
+			record.setUserId(userId);
 			return funExpUserMapper.insert(record);
 		}
 		return funExpUserMapper.update(record);
@@ -216,6 +216,21 @@ public class FunExpServiceImpl implements FunExpService {
 	@Override
 	public int getExpUserCount(Long expId) {
 		return funExpUserMapper.getExpUserCount(expId);
+	}
+
+	@Override
+	public PageResult findPageByStatus(PageRequest pageRequest) {
+		String name = getColumnFilterValue(pageRequest, "name");
+		String status = getColumnFilterValue(pageRequest, "status");
+		if(status != null) {
+			Integer sta = Integer.valueOf(status);
+			if(name != null)
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByNameAndStatus", name, sta);
+			else
+				return MybatisPageHelper.findPage(pageRequest, funExpMapper, "findPageByStatus", sta);
+		}else{
+			return MybatisPageHelper.findPage(pageRequest, funExpMapper);
+		}
 	}
 
 }

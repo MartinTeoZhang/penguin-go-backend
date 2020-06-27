@@ -206,9 +206,9 @@ public class FunExpController {
 	 * @return
 	 */
 	@GetMapping(value="/findExpUsers")
-	public HttpResult findExpUsers(@RequestParam Long expId) {
-		return HttpResult.ok(funExpService.findExpUsers(expId));
-	}
+    public HttpResult findExpUsers(@RequestParam Long expId, @RequestParam String userName) {
+        return HttpResult.ok(funExpService.findExpUsers(expId, userName));
+    }
 	
 	/**
 	 * 查询实验用户
@@ -269,5 +269,15 @@ public class FunExpController {
     @GetMapping(value="/findUserExpByExpId")
     public HttpResult findUserExpByExpId(@RequestParam Long expId) {
         return HttpResult.ok(funUserExpService.findUserExpByExpId(expId));
+    }
+
+    /**
+    * 根据实验状态查询
+    * @param pageRequest
+    * @return
+    */    
+    @PostMapping(value="/findPageByStatus")
+    public HttpResult findPageByStatus(@RequestBody PageRequest pageRequest) {
+        return HttpResult.ok(funExpService.findPageByStatus(pageRequest));
     }
 }

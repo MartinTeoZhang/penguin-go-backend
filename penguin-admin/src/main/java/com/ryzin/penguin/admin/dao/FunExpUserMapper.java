@@ -41,7 +41,7 @@ public interface FunExpUserMapper {
     
     int deleteByPrimaryKey(Long id);
     
-	List<FunExpUser> findExpUsers(@Param(value="expId") Long expId);
+    List<FunExpUser> findExpUsers(@Param(value="expId") Long expId, @Param(value="userId") Long userId);
 	
 	List<FunExpUser> findAll();
 	
