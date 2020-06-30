@@ -56,6 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/webjars/springfox-swagger-ui/**").permitAll()
             // 验证码
             .antMatchers("/captcha.jpg**").permitAll()
+            //头像图片
+            .antMatchers("/images/**").permitAll()
             // 服务监控
             .antMatchers("/actuator/**").permitAll()
             // 放行实验列表分页请求

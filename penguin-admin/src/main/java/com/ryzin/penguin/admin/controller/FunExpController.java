@@ -124,7 +124,6 @@ public class FunExpController {
      */ 	
 	@PreAuthorize("hasAuthority('fun:exper:viewexp')")
 	@GetMapping(value="/getExpStatData")
-	
 	public HttpResult getExpStatData(@RequestParam Long id) {
 		SysUser user = sysUserService.findById(id);
 		user.setUserRoles(sysUserService.findUserRoles(id));
